@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.tableQR.detail.title">Table QR</span> {{vm.tableQR.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.tableQR.code">Code</span></dt>
+        <dd>
+            <span>{{vm.tableQR.code}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.tableQR.table">Table</span></dt>
+        <dd>
+            <a ui-sref="dining-table-detail({id:vm.tableQR.tableId})">{{vm.tableQR.tableCode}}</a>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.tableQR.store">Store</span></dt>
+        <dd>
+            <a ui-sref="store-detail({id:vm.tableQR.storeId})">{{vm.tableQR.storeCode}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="table-qr-detail.edit({id:vm.tableQR.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

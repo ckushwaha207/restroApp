@@ -1,0 +1,70 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCommerceItemLabel" data-translate="foodAppetencyApp.commerceItem.home.createOrEditLabel">Create or edit a Commerce Item</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.commerceItem.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.commerceItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.commerceItem.quantity" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                    ng-model="vm.commerceItem.quantity"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.commerceItem.state" for="field_state">State</label>
+            <select class="form-control" name="state" ng-model="vm.commerceItem.state" id="field_state">
+                <option value="INITIAL" data-translate="foodAppetencyApp.ItemState.INITIAL">INITIAL</option>
+                <option value="ITEM_NOT_FOUND" data-translate="foodAppetencyApp.ItemState.ITEM_NOT_FOUND">ITEM_NOT_FOUND</option>
+                <option value="OUT_OF_STOCK" data-translate="foodAppetencyApp.ItemState.OUT_OF_STOCK">OUT_OF_STOCK</option>
+                <option value="ADDED" data-translate="foodAppetencyApp.ItemState.ADDED">ADDED</option>
+                <option value="REMOVED" data-translate="foodAppetencyApp.ItemState.REMOVED">REMOVED</option>
+                <option value="PROCESSING" data-translate="foodAppetencyApp.ItemState.PROCESSING">PROCESSING</option>
+                <option value="PROCESSED" data-translate="foodAppetencyApp.ItemState.PROCESSED">PROCESSED</option>
+                <option value="PENDING_DELIVERY" data-translate="foodAppetencyApp.ItemState.PENDING_DELIVERY">PENDING_DELIVERY</option>
+                <option value="DELIVERED" data-translate="foodAppetencyApp.ItemState.DELIVERED">DELIVERED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.commerceItem.stateDetail" for="field_stateDetail">State Detail</label>
+            <input type="text" class="form-control" name="stateDetail" id="field_stateDetail"
+                    ng-model="vm.commerceItem.stateDetail"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.commerceItem.totalPrice" for="field_totalPrice">Total Price</label>
+            <input type="number" class="form-control" name="totalPrice" id="field_totalPrice"
+                    ng-model="vm.commerceItem.totalPrice"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="foodAppetencyApp.commerceItem.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" ng-model="vm.commerceItem.productId" ng-options="menuItem.id as menuItem.name for menuItem in vm.products | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="foodAppetencyApp.commerceItem.order" for="field_order">Order</label>
+            <select class="form-control" id="field_order" name="order" ng-model="vm.commerceItem.orderId" ng-options="order.id as order.id for order in vm.orders"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

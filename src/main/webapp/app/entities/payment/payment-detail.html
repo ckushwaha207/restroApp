@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.payment.detail.title">Payment</span> {{vm.payment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.payment.method">Method</span></dt>
+        <dd>
+            <span data-translate="{{'foodAppetencyApp.PaymentMethod.' + vm.payment.method}}">{{vm.payment.method}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.payment.state">State</span></dt>
+        <dd>
+            <span data-translate="{{'foodAppetencyApp.PaymentState.' + vm.payment.state}}">{{vm.payment.state}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.payment.amount">Amount</span></dt>
+        <dd>
+            <span>{{vm.payment.amount}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.payment.authorizedAmount">Authorized Amount</span></dt>
+        <dd>
+            <span>{{vm.payment.authorizedAmount}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.payment.order">Order</span></dt>
+        <dd>
+            <a ui-sref="order-detail({id:vm.payment.orderId})">{{vm.payment.orderId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="payment-detail.edit({id:vm.payment.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

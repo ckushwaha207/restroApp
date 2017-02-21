@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "items",
+            "otherEntityName": "commerceItem",
+            "otherEntityRelationshipName": "order"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "payments",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "order"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "OrderState",
+            "fieldValues": "SUBMITTED,FAILED,APPROVED,PROCESSING,PROCESSED,AMENDED,FAILED_APPROVAL,FAILED_AMENDMENT,PENDING_CUSTOMER_ACTION,PENDING_MERCHANT_ACTION,NO_PENDING_ACTION"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "subTotal",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170221064738",
+    "entityTableName": "pa_order",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

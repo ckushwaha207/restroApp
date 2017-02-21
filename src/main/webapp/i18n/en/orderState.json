@@ -1,0 +1,18 @@
+{
+    "foodAppetencyApp": {
+        "OrderState" : {
+            "null": "",
+            "SUBMITTED": "SUBMITTED",
+            "FAILED": "FAILED",
+            "APPROVED": "APPROVED",
+            "PROCESSING": "PROCESSING",
+            "PROCESSED": "PROCESSED",
+            "AMENDED": "AMENDED",
+            "FAILED_APPROVAL": "FAILED_APPROVAL",
+            "FAILED_AMENDMENT": "FAILED_AMENDMENT",
+            "PENDING_CUSTOMER_ACTION": "PENDING_CUSTOMER_ACTION",
+            "PENDING_MERCHANT_ACTION": "PENDING_MERCHANT_ACTION",
+            "NO_PENDING_ACTION": "NO_PENDING_ACTION"
+        }
+    }
+}

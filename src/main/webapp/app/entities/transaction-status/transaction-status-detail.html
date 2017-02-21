@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.transactionStatus.detail.title">Transaction Status</span> {{vm.transactionStatus.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.transactionId">Transaction Id</span></dt>
+        <dd>
+            <span>{{vm.transactionStatus.transactionId}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.transactionSuccess">Transaction Success</span></dt>
+        <dd>
+            <span>{{vm.transactionStatus.transactionSuccess}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.amount">Amount</span></dt>
+        <dd>
+            <span>{{vm.transactionStatus.amount}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.errorCode">Error Code</span></dt>
+        <dd>
+            <span>{{vm.transactionStatus.errorCode}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.errorMessage">Error Message</span></dt>
+        <dd>
+            <span>{{vm.transactionStatus.errorMessage}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.transactionStatus.payment">Payment</span></dt>
+        <dd>
+            <a ui-sref="payment-detail({id:vm.transactionStatus.paymentId})">{{vm.transactionStatus.paymentId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transaction-status-detail.edit({id:vm.transactionStatus.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

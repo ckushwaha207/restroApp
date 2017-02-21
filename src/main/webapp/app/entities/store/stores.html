@@ -1,0 +1,105 @@
+<div>
+    <h2 data-translate="foodAppetencyApp.store.home.title">Stores</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="store.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="foodAppetencyApp.store.home.createLabel">
+                        Create new Store
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'foodAppetencyApp.store.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="code"><span data-translate="foodAppetencyApp.store.code">Code</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="foodAppetencyApp.store.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="timings"><span data-translate="foodAppetencyApp.store.timings">Timings</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="website"><span data-translate="foodAppetencyApp.store.website">Website</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="email"><span data-translate="foodAppetencyApp.store.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="phoneNumber"><span data-translate="foodAppetencyApp.store.phoneNumber">Phone Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mobileNumber"><span data-translate="foodAppetencyApp.store.mobileNumber">Mobile Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="faxNumber"><span data-translate="foodAppetencyApp.store.faxNumber">Fax Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="siteUrl"><span data-translate="foodAppetencyApp.store.siteUrl">Site Url</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="locationId"><span data-translate="foodAppetencyApp.store.location">Location</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="organizationId"><span data-translate="foodAppetencyApp.store.organization">Organization</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="storeGroupId"><span data-translate="foodAppetencyApp.store.storeGroup">Store Group</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="store in vm.stores track by store.id">
+                    <td><a ui-sref="store-detail({id:store.id})">{{store.id}}</a></td>
+                    <td>{{store.code}}</td>
+                    <td>{{store.name}}</td>
+                    <td>{{store.timings}}</td>
+                    <td>{{store.website}}</td>
+                    <td>{{store.email}}</td>
+                    <td>{{store.phoneNumber}}</td>
+                    <td>{{store.mobileNumber}}</td>
+                    <td>{{store.faxNumber}}</td>
+                    <td>{{store.siteUrl}}</td>
+                    <td>
+                        <a ui-sref="location-detail({id:store.locationId})">{{store.locationId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="organization-detail({id:store.organizationId})">{{store.organizationId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="store-group-detail({id:store.storeGroupId})">{{store.storeGroupId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="store-detail({id:store.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="store.edit({id:store.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="store.delete({id:store.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myOrderLabel" data-translate="foodAppetencyApp.order.home.createOrEditLabel">Create or edit a Order</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.order.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.order.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.order.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                    ng-model="vm.order.orderNumber"
+                    required/>
+            <div ng-show="editForm.orderNumber.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.orderNumber.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.order.state" for="field_state">State</label>
+            <select class="form-control" name="state" ng-model="vm.order.state" id="field_state">
+                <option value="SUBMITTED" data-translate="foodAppetencyApp.OrderState.SUBMITTED">SUBMITTED</option>
+                <option value="FAILED" data-translate="foodAppetencyApp.OrderState.FAILED">FAILED</option>
+                <option value="APPROVED" data-translate="foodAppetencyApp.OrderState.APPROVED">APPROVED</option>
+                <option value="PROCESSING" data-translate="foodAppetencyApp.OrderState.PROCESSING">PROCESSING</option>
+                <option value="PROCESSED" data-translate="foodAppetencyApp.OrderState.PROCESSED">PROCESSED</option>
+                <option value="AMENDED" data-translate="foodAppetencyApp.OrderState.AMENDED">AMENDED</option>
+                <option value="FAILED_APPROVAL" data-translate="foodAppetencyApp.OrderState.FAILED_APPROVAL">FAILED_APPROVAL</option>
+                <option value="FAILED_AMENDMENT" data-translate="foodAppetencyApp.OrderState.FAILED_AMENDMENT">FAILED_AMENDMENT</option>
+                <option value="PENDING_CUSTOMER_ACTION" data-translate="foodAppetencyApp.OrderState.PENDING_CUSTOMER_ACTION">PENDING_CUSTOMER_ACTION</option>
+                <option value="PENDING_MERCHANT_ACTION" data-translate="foodAppetencyApp.OrderState.PENDING_MERCHANT_ACTION">PENDING_MERCHANT_ACTION</option>
+                <option value="NO_PENDING_ACTION" data-translate="foodAppetencyApp.OrderState.NO_PENDING_ACTION">NO_PENDING_ACTION</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.order.total" for="field_total">Total</label>
+            <input type="number" class="form-control" name="total" id="field_total"
+                    ng-model="vm.order.total"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.order.subTotal" for="field_subTotal">Sub Total</label>
+            <input type="number" class="form-control" name="subTotal" id="field_subTotal"
+                    ng-model="vm.order.subTotal"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "authorizationStatus",
+            "otherEntityName": "transactionStatus",
+            "otherEntityRelationshipName": "payment"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "order",
+            "otherEntityName": "order",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "method",
+            "fieldType": "PaymentMethod",
+            "fieldValues": "CASH,CREDIT_CARD,DEBIT_CARD,NET_BANKING,MOBILE_BANKING,PAYTM"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "PaymentState",
+            "fieldValues": "INITIAL,AUTHORIZED,AUTHORIZED_FAILED,CREDIT_FAILED,REMOVED,SETTLE_FAILED,SETTLED"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "authorizedAmount",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170221064738",
+    "entityTableName": "payment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

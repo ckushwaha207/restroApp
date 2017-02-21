@@ -1,0 +1,24 @@
+{
+    "foodAppetencyApp": {
+        "businessUser" : {
+            "home": {
+                "title": "Business Users",
+                "createLabel": "Create a new Business User",
+                "createOrEditLabel": "Create or edit a Business User",
+                "search": "Search for Business User"
+            },
+            "created": "A new Business User is created with identifier {{ param }}",
+            "updated": "A Business User is updated with identifier {{ param }}",
+            "deleted": "A Business User is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Business User {{ id }}?"
+            },
+            "detail": {
+                "title": "Business User"
+            },
+            "user": "User",
+            "storeGroup": "Store Group",
+            "store": "Store"
+        }
+    }
+}

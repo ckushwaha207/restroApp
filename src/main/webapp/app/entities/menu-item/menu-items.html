@@ -1,0 +1,93 @@
+<div>
+    <h2 data-translate="foodAppetencyApp.menuItem.home.title">Menu Items</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="menu-item.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="foodAppetencyApp.menuItem.home.createLabel">
+                        Create new Menu Item
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'foodAppetencyApp.menuItem.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span data-translate="foodAppetencyApp.menuItem.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="price"><span data-translate="foodAppetencyApp.menuItem.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="preparationTime"><span data-translate="foodAppetencyApp.menuItem.preparationTime">Preparation Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ingredient"><span data-translate="foodAppetencyApp.menuItem.ingredient">Ingredient</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="imageUrl"><span data-translate="foodAppetencyApp.menuItem.imageUrl">Image Url</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="foodAppetencyApp.menuItem.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="diet"><span data-translate="foodAppetencyApp.menuItem.diet">Diet</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="categoryName"><span data-translate="foodAppetencyApp.menuItem.category">Category</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="menuItem in vm.menuItems track by menuItem.id">
+                    <td><a ui-sref="menu-item-detail({id:menuItem.id})">{{menuItem.id}}</a></td>
+                    <td>{{menuItem.name}}</td>
+                    <td>{{menuItem.price}}</td>
+                    <td>{{menuItem.preparationTime}}</td>
+                    <td>{{menuItem.ingredient}}</td>
+                    <td>{{menuItem.imageUrl}}</td>
+                    <td>{{menuItem.description}}</td>
+                    <td data-translate="{{'foodAppetencyApp.Diet.' + menuItem.diet}}">{{menuItem.diet}}</td>
+                    <td>
+                        <a ui-sref="menu-category-detail({id:menuItem.categoryId})">{{menuItem.categoryName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="menu-item-detail({id:menuItem.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="menu-item.edit({id:menuItem.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="menu-item.delete({id:menuItem.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

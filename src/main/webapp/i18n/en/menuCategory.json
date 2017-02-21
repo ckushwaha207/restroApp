@@ -1,0 +1,24 @@
+{
+    "foodAppetencyApp": {
+        "menuCategory" : {
+            "home": {
+                "title": "Menu Categories",
+                "createLabel": "Create a new Menu Category",
+                "createOrEditLabel": "Create or edit a Menu Category",
+                "search": "Search for Menu Category"
+            },
+            "created": "A new Menu Category is created with identifier {{ param }}",
+            "updated": "A Menu Category is updated with identifier {{ param }}",
+            "deleted": "A Menu Category is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Menu Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Menu Category"
+            },
+            "name": "Name",
+            "items": "Items",
+            "menu": "Menu"
+        }
+    }
+}

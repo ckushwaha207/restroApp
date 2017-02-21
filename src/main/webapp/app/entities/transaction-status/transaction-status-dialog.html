@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTransactionStatusLabel" data-translate="foodAppetencyApp.transactionStatus.home.createOrEditLabel">Create or edit a Transaction Status</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.transactionStatus.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.transactionStatus.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.transactionStatus.transactionId" for="field_transactionId">Transaction Id</label>
+            <input type="text" class="form-control" name="transactionId" id="field_transactionId"
+                    ng-model="vm.transactionStatus.transactionId"
+                    required/>
+            <div ng-show="editForm.transactionId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.transactionId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.transactionStatus.transactionSuccess" for="field_transactionSuccess">Transaction Success</label>
+            <input type="checkbox" class="form-control" name="transactionSuccess" id="field_transactionSuccess"
+                    ng-model="vm.transactionStatus.transactionSuccess"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.transactionStatus.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                    ng-model="vm.transactionStatus.amount"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.transactionStatus.errorCode" for="field_errorCode">Error Code</label>
+            <input type="text" class="form-control" name="errorCode" id="field_errorCode"
+                    ng-model="vm.transactionStatus.errorCode"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.transactionStatus.errorMessage" for="field_errorMessage">Error Message</label>
+            <input type="text" class="form-control" name="errorMessage" id="field_errorMessage"
+                    ng-model="vm.transactionStatus.errorMessage"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="foodAppetencyApp.transactionStatus.payment" for="field_payment">Payment</label>
+            <select class="form-control" id="field_payment" name="payment" ng-model="vm.transactionStatus.paymentId" ng-options="payment.id as payment.id for payment in vm.payments"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

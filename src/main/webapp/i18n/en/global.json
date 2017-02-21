@@ -7,6 +7,21 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "menuItem": "Menu Item",
+                "businessUser": "Business User",
+                "customer": "Customer",
+                "diningTable": "Dining Table",
+                "location": "Location",
+                "menu": "Menu",
+                "menuCategory": "Menu Category",
+                "commerceItem": "Commerce Item",
+                "order": "Order",
+                "organization": "Organization",
+                "payment": "Payment",
+                "store": "Store",
+                "storeGroup": "Store Group",
+                "tableQr": "Table QR",
+                "transactionStatus": "Transaction Status",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

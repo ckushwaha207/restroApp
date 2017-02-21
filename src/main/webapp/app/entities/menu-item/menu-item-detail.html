@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.menuItem.detail.title">Menu Item</span> {{vm.menuItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.menuItem.name">Name</span></dt>
+        <dd>
+            <span>{{vm.menuItem.name}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.price">Price</span></dt>
+        <dd>
+            <span>{{vm.menuItem.price}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.preparationTime">Preparation Time</span></dt>
+        <dd>
+            <span>{{vm.menuItem.preparationTime}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.ingredient">Ingredient</span></dt>
+        <dd>
+            <span>{{vm.menuItem.ingredient}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.imageUrl">Image Url</span></dt>
+        <dd>
+            <span>{{vm.menuItem.imageUrl}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.description">Description</span></dt>
+        <dd>
+            <span>{{vm.menuItem.description}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.diet">Diet</span></dt>
+        <dd>
+            <span data-translate="{{'foodAppetencyApp.Diet.' + vm.menuItem.diet}}">{{vm.menuItem.diet}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.menuItem.category">Category</span></dt>
+        <dd>
+            <a ui-sref="menu-category-detail({id:vm.menuItem.categoryId})">{{vm.menuItem.categoryName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="menu-item-detail.edit({id:vm.menuItem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

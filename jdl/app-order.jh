@@ -1,0 +1,86 @@
+enum OrderState {
+		SUBMITTED,
+    FAILED,
+    APPROVED,
+    PROCESSING,
+    PROCESSED,
+    AMENDED,
+    FAILED_APPROVAL,
+    FAILED_AMENDMENT,
+    PENDING_CUSTOMER_ACTION,
+    PENDING_MERCHANT_ACTION,
+    NO_PENDING_ACTION
+}
+
+enum ItemState {
+		INITIAL,
+    ITEM_NOT_FOUND,
+    OUT_OF_STOCK,
+    ADDED,
+    REMOVED,
+    PROCESSING,
+    PROCESSED,
+    PENDING_DELIVERY,
+    DELIVERED
+}
+
+enum PaymentState {
+		INITIAL,
+    AUTHORIZED,
+    AUTHORIZED_FAILED,
+    CREDIT_FAILED,
+    REMOVED,
+    SETTLE_FAILED,
+    SETTLED
+}
+
+enum PaymentMethod {
+	CASH,
+    CREDIT_CARD,
+    DEBIT_CARD,
+    NET_BANKING,
+    MOBILE_BANKING,
+    PAYTM
+}
+
+entity CommerceItem {
+	quantity Integer
+    state ItemState
+    stateDetail String
+    totalPrice Double
+}
+
+relationship OneToOne {
+	CommerceItem{product(name)} to MenuItem
+}
+
+entity TransactionStatus {
+		transactionId String required
+    transactionSuccess Boolean
+    amount Double
+    errorCode String
+    errorMessage String
+}
+
+entity Payment {
+		method PaymentMethod
+    state PaymentState
+    amount Double
+    authorizedAmount Double
+}
+
+relationship OneToMany {
+		Payment{authorizationStatus} to TransactionStatus
+}
+
+entity Order(PA_Order) {
+		orderNumber String required
+    state OrderState
+    total Double
+    subTotal Double
+}
+
+relationship OneToMany {
+		Order{items} to CommerceItem{order},
+    Order{payments} to Payment{order}
+}

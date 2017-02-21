@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "transactionId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionSuccess",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "errorCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "errorMessage",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170221064738",
+    "entityTableName": "transaction_status",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}

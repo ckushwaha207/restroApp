@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.location.detail.title">Location</span> {{vm.location.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.location.address1">Address 1</span></dt>
+        <dd>
+            <span>{{vm.location.address1}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.address2">Address 2</span></dt>
+        <dd>
+            <span>{{vm.location.address2}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.address3">Address 3</span></dt>
+        <dd>
+            <span>{{vm.location.address3}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.city">City</span></dt>
+        <dd>
+            <span>{{vm.location.city}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.state">State</span></dt>
+        <dd>
+            <span>{{vm.location.state}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.country">Country</span></dt>
+        <dd>
+            <span>{{vm.location.country}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{vm.location.latitude}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.location.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{vm.location.longitude}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="location-detail.edit({id:vm.location.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
