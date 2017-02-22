@@ -1,20 +1,24 @@
 package com.fa.service.mapper;
 
 import com.fa.domain.*;
-import com.fa.service.dto.StoreDTO;
+import com.fa.service.dto.*;
 
+import com.fa.service.mapper.impl.StoreMapperDecorator;
 import org.mapstruct.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Mapper for the entity Store and its DTO StoreDTO.
  */
 @Mapper(componentModel = "spring", uses = {})
+@DecoratedWith(StoreMapperDecorator.class)
 public interface StoreMapper {
 
     @Mapping(source = "location.id", target = "locationId")
     @Mapping(source = "organization.id", target = "organizationId")
     @Mapping(source = "storeGroup.id", target = "storeGroupId")
+    @Mapping(target = "address", ignore = true)
     StoreDTO storeToStoreDTO(Store store);
 
     List<StoreDTO> storesToStoreDTOs(List<Store> stores);
@@ -54,4 +58,32 @@ public interface StoreMapper {
         storeGroup.setId(id);
         return storeGroup;
     }
+
+    // mapping for menus
+    @Mappings({
+        @Mapping(target = "storeId", source = "store.id"),
+    })
+    MenuDTO menuToMenuDTO(Menu menu);
+
+    List<MenuDTO> menusToMenuDTOs(Set<Menu> menus);
+
+
+    // mapping for menu-categories
+    @Mappings({
+        @Mapping(target = "menuId", source = "menu.id"),
+        @Mapping(target = "menuName", source = "menu.name"),
+    })
+    MenuCategoryDTO menuCategoryToMenuCategoryDTO(MenuCategory menuCategory);
+
+    List<MenuCategoryDTO> menuCategoriesToMenuCategoryDTOs(Set<MenuCategory> menuCategories);
+
+    // mapping for menu-items
+
+    @Mappings({
+        @Mapping(target = "categoryId", source = "category.id"),
+        @Mapping(target = "categoryName", source = "category.name")
+    })
+    MenuItemDTO menuItemToMenuItemDTO(MenuItem menuItem);
+
+    List<MenuItemDTO> menuItemsToMenuItemDTOs(Set<MenuItem> menuItems);
 }

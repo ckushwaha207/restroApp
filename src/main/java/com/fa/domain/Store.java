@@ -72,7 +72,6 @@ public class Store implements Serializable {
     private StoreGroup storeGroup;
 
     @OneToMany(mappedBy = "store")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Menu> menus = new HashSet<>();
 

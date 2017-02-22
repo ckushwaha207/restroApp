@@ -21,6 +21,16 @@ public class MenuCategoryDTO implements Serializable {
 
     private String menuName;
 
+    private Set<MenuItemDTO> items;
+
+    public Set<MenuItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<MenuItemDTO> items) {
+        this.items = items;
+    }
+
     public Long getId() {
         return id;
     }

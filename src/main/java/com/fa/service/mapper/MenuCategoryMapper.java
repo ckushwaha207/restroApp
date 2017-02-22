@@ -3,8 +3,10 @@ package com.fa.service.mapper;
 import com.fa.domain.*;
 import com.fa.service.dto.MenuCategoryDTO;
 
+import com.fa.service.dto.MenuItemDTO;
 import org.mapstruct.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Mapper for the entity MenuCategory and its DTO MenuCategoryDTO.
@@ -32,4 +34,14 @@ public interface MenuCategoryMapper {
         menu.setId(id);
         return menu;
     }
+
+    // mapping for menu-items
+
+    @Mappings({
+        @Mapping(target = "categoryId", source = "category.id"),
+        @Mapping(target = "categoryName", source = "category.name")
+    })
+    MenuItemDTO menuItemToMenuItemDTO(MenuItem menuItem);
+
+    List<MenuItemDTO> menuItemsToMenuItemDTOs(Set<MenuItem> menuItems);
 }
