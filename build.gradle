@@ -38,7 +38,9 @@ bootRepackage {
 }
 
 war {
-
+    webInf {
+        from '/src/main/webapp/WEB-INF'
+    }
 }
 
 springBoot {

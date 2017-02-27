@@ -22,8 +22,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/FoodAppetency?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password:
+        username: foodAppetency
+        password: foodAppetency
         hikari:
             data-source-properties:
                 cachePrepStmts: true
