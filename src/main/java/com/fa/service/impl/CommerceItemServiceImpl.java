@@ -1,10 +1,15 @@
 package com.fa.service.impl;
 
+import com.fa.domain.MenuItem;
+import com.fa.domain.enumeration.ItemState;
 import com.fa.service.CommerceItemService;
 import com.fa.domain.CommerceItem;
 import com.fa.repository.CommerceItemRepository;
 import com.fa.repository.search.CommerceItemSearchRepository;
+import com.fa.service.MenuItemService;
+import com.fa.service.MenuService;
 import com.fa.service.dto.CommerceItemDTO;
+import com.fa.service.dto.MenuItemDTO;
 import com.fa.service.mapper.CommerceItemMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +33,20 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class CommerceItemServiceImpl implements CommerceItemService{
 
     private final Logger log = LoggerFactory.getLogger(CommerceItemServiceImpl.class);
-    
+
     private final CommerceItemRepository commerceItemRepository;
 
     private final CommerceItemMapper commerceItemMapper;
 
     private final CommerceItemSearchRepository commerceItemSearchRepository;
 
-    public CommerceItemServiceImpl(CommerceItemRepository commerceItemRepository, CommerceItemMapper commerceItemMapper, CommerceItemSearchRepository commerceItemSearchRepository) {
+    private final MenuItemService menuItemService;
+
+    public CommerceItemServiceImpl(CommerceItemRepository commerceItemRepository, CommerceItemMapper commerceItemMapper, CommerceItemSearchRepository commerceItemSearchRepository, MenuItemService menuItemService) {
         this.commerceItemRepository = commerceItemRepository;
         this.commerceItemMapper = commerceItemMapper;
         this.commerceItemSearchRepository = commerceItemSearchRepository;
+        this.menuItemService = menuItemService;
     }
 
     /**
@@ -50,16 +58,37 @@ public class CommerceItemServiceImpl implements CommerceItemService{
     @Override
     public CommerceItemDTO save(CommerceItemDTO commerceItemDTO) {
         log.debug("Request to save CommerceItem : {}", commerceItemDTO);
+        CommerceItemDTO result = null;
         CommerceItem commerceItem = commerceItemMapper.commerceItemDTOToCommerceItem(commerceItemDTO);
-        commerceItem = commerceItemRepository.save(commerceItem);
-        CommerceItemDTO result = commerceItemMapper.commerceItemToCommerceItemDTO(commerceItem);
-        commerceItemSearchRepository.save(commerceItem);
+
+        CommerceItem existingCommerceItem = commerceItemRepository.findOneByOrderIdAndProductId(commerceItem.getOrder().getId(), commerceItem.getProduct().getId());
+        if(existingCommerceItem == null) {
+            // check product exist
+            MenuItemDTO product = menuItemService.findOne(commerceItem.getProduct().getId());
+            if (product == null) {
+                return null;
+            } else {
+                commerceItem.setTotalPrice(product.getPrice() * commerceItem.getQuantity());
+                commerceItem.setState(ItemState.INITIAL);
+                commerceItem = commerceItemRepository.save(commerceItem);
+                result = commerceItemMapper.commerceItemToCommerceItemDTO(commerceItem);
+                result.setProductName(product.getName());
+                commerceItemSearchRepository.save(commerceItem);
+                return result;
+            }
+        } else {
+            existingCommerceItem.setQuantity(commerceItem.getQuantity());
+            existingCommerceItem.setTotalPrice(existingCommerceItem.getProduct().getPrice() * commerceItem.getQuantity());
+            commerceItem = commerceItemRepository.save(existingCommerceItem);
+            result = commerceItemMapper.commerceItemToCommerceItemDTO(commerceItem);
+            commerceItemSearchRepository.save(commerceItem);
+        }
         return result;
     }
 
     /**
      *  Get all the commerceItems.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */

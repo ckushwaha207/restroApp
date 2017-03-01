@@ -12,4 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface CommerceItemRepository extends JpaRepository<CommerceItem,Long> {
 
+    CommerceItem findOneByOrderIdAndProductId(Long orderId, Long productId);
 }

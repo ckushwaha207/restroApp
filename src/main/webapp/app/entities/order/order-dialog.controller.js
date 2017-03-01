@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('OrderDialogController', OrderDialogController);
 
-    OrderDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Order', 'CommerceItem', 'Payment'];
+    OrderDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Order', 'CommerceItem', 'Payment', 'User'];
 
-    function OrderDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Order, CommerceItem, Payment) {
+    function OrderDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Order, CommerceItem, Payment, User) {
         var vm = this;
 
         vm.order = entity;
@@ -15,6 +15,7 @@
         vm.save = save;
         vm.commerceitems = CommerceItem.query();
         vm.payments = Payment.query();
+        vm.users = User.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

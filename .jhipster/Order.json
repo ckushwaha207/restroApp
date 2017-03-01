@@ -12,15 +12,20 @@
             "relationshipName": "payments",
             "otherEntityName": "payment",
             "otherEntityRelationshipName": "order"
+        },
+        {
+            "relationshipName": "profile",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "order"
         }
     ],
     "fields": [
         {
             "fieldName": "orderNumber",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "state",
@@ -37,8 +42,8 @@
         }
     ],
     "changelogDate": "20170221064738",
-    "entityTableName": "pa_order",
     "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceImpl"
+    "service": "serviceImpl",
+    "entityTableName": "pa_order",
+    "pagination": "pagination"
 }

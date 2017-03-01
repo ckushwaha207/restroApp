@@ -163,25 +163,6 @@ public class OrderResourceIntTest {
 
     @Test
     @Transactional
-    public void checkOrderNumberIsRequired() throws Exception {
-        int databaseSizeBeforeTest = orderRepository.findAll().size();
-        // set the field null
-        order.setOrderNumber(null);
-
-        // Create the Order, which fails.
-        OrderDTO orderDTO = orderMapper.orderToOrderDTO(order);
-
-        restOrderMockMvc.perform(post("/api/orders")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Order> orderList = orderRepository.findAll();
-        assertThat(orderList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllOrders() throws Exception {
         // Initialize the database
         orderRepository.saveAndFlush(order);

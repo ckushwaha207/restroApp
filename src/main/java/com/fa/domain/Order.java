@@ -3,11 +3,12 @@ package com.fa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -29,8 +30,18 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "order_number", nullable = false)
+    @Column(name = "order_number")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilo_sequence_generator")
+    @GenericGenerator(
+        name = "hilo_sequence_generator",
+        strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+        parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "hilo_seqeunce"),
+            @org.hibernate.annotations.Parameter(name = "initial_value", value = "ORD000000"),
+            @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
+            @org.hibernate.annotations.Parameter(name = "optimizer", value = "hilo")
+        }
+    )
     private String orderNumber;
 
     @Enumerated(EnumType.STRING)
@@ -44,7 +55,6 @@ public class Order implements Serializable {
     private Double subTotal;
 
     @OneToMany(mappedBy = "order")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CommerceItem> items = new HashSet<>();
 
@@ -52,6 +62,9 @@ public class Order implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Payment> payments = new HashSet<>();
+
+    @ManyToOne
+    private User profile;
 
     public Long getId() {
         return id;
@@ -161,6 +174,19 @@ public class Order implements Serializable {
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public User getProfile() {
+        return profile;
+    }
+
+    public Order profile(User user) {
+        this.profile = user;
+        return this;
+    }
+
+    public void setProfile(User user) {
+        this.profile = user;
     }
 
     @Override

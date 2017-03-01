@@ -1,5 +1,5 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -17,13 +17,7 @@
             <label class="control-label" data-translate="foodAppetencyApp.order.orderNumber" for="field_orderNumber">Order Number</label>
             <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
                     ng-model="vm.order.orderNumber"
-                    required/>
-            <div ng-show="editForm.orderNumber.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.orderNumber.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+                    />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="foodAppetencyApp.order.state" for="field_state">State</label>
@@ -54,6 +48,12 @@
                     />
         </div>
 
+        <div class="form-group">
+            <label data-translate="foodAppetencyApp.order.profile" for="field_profile">Profile</label>
+            <select class="form-control" id="field_profile" name="profile" ng-model="vm.order.profileId" ng-options="user.id as user.login for user in vm.users"            >
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

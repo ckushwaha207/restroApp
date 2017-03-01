@@ -23,7 +23,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="order_number" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="state" type="varchar(255)">
@@ -35,6 +35,10 @@
             </column>
 
             <column name="sub_total" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="profile_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

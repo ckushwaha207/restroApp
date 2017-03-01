@@ -21,7 +21,8 @@
             "total": "Total",
             "subTotal": "Sub Total",
             "items": "Items",
-            "payments": "Payments"
+            "payments": "Payments",
+            "profile": "Profile"
         }
     }
 }

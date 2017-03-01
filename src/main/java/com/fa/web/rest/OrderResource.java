@@ -2,6 +2,7 @@ package com.fa.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fa.service.OrderService;
+import com.fa.service.dto.CartDTO;
 import com.fa.web.rest.util.HeaderUtil;
 import com.fa.web.rest.util.PaginationUtil;
 import com.fa.service.dto.OrderDTO;
@@ -37,7 +38,7 @@ public class OrderResource {
     private final Logger log = LoggerFactory.getLogger(OrderResource.class);
 
     private static final String ENTITY_NAME = "order";
-        
+
     private final OrderService orderService;
 
     public OrderResource(OrderService orderService) {
@@ -59,6 +60,27 @@ public class OrderResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new order cannot already have an ID")).body(null);
         }
         OrderDTO result = orderService.save(orderDTO);
+        return ResponseEntity.created(new URI("/api/orders/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * POST  /orders/create : Create a new order.
+     *
+     * @param cartDTO the cartDTO used to create orderDTO
+     * @return the ResponseEntity with status 201 (Created) and with body the new orderDTO, or with status 400 (Bad Request) if the order has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/orders/create")
+    @Timed
+    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody CartDTO cartDTO) throws URISyntaxException {
+        log.debug("REST request to save Order : {}", cartDTO);
+
+        if (cartDTO.getItems() == null || cartDTO.getItems().isEmpty()) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new order cannot already have an ID")).body(null);
+        }
+        OrderDTO result = orderService.createOrder(cartDTO);
         return ResponseEntity.created(new URI("/api/orders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -135,7 +157,7 @@ public class OrderResource {
      * SEARCH  /_search/orders?query=:query : search for the order corresponding
      * to the query.
      *
-     * @param query the query of the order search 
+     * @param query the query of the order search
      * @param pageable the pagination information
      * @return the result of the search
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers

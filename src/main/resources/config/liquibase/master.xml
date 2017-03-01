@@ -32,6 +32,7 @@
     <include file="classpath:config/liquibase/changelog/20170221064738_added_entity_constraints_StoreGroup.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170221064738_added_entity_constraints_TableQR.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170221064738_added_entity_constraints_TransactionStatus.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221064738_added_entity_constraints_Order.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170221122344_load_initial_data_for_entities.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -24,6 +24,12 @@ public class OrderDTO implements Serializable {
 
     private Double subTotal;
 
+    private Long profileId;
+
+    private String profileLogin;
+
+    private Set<CommerceItemDTO> items;
+
     public Long getId() {
         return id;
     }
@@ -59,6 +65,31 @@ public class OrderDTO implements Serializable {
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
+
+    public Long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(Long userId) {
+        this.profileId = userId;
+    }
+
+    public String getProfileLogin() {
+        return profileLogin;
+    }
+
+    public void setProfileLogin(String userLogin) {
+        this.profileLogin = userLogin;
+    }
+
+    public Set<CommerceItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<CommerceItemDTO> items) {
+        this.items = items;
+    }
+
 
     @Override
     public boolean equals(Object o) {

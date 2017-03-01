@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('OrderDetailController', OrderDetailController);
 
-    OrderDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Order', 'CommerceItem', 'Payment'];
+    OrderDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Order', 'CommerceItem', 'Payment', 'User'];
 
-    function OrderDetailController($scope, $rootScope, $stateParams, previousState, entity, Order, CommerceItem, Payment) {
+    function OrderDetailController($scope, $rootScope, $stateParams, previousState, entity, Order, CommerceItem, Payment, User) {
         var vm = this;
 
         vm.order = entity;

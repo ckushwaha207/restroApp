@@ -74,10 +74,14 @@ relationship OneToMany {
 }
 
 entity Order(PA_Order) {
-		orderNumber String required
+		orderNumber String
     state OrderState
     total Double
     subTotal Double
+}
+
+relationship ManyToOne {
+    Order{profile(login)} to User
 }
 
 relationship OneToMany {
