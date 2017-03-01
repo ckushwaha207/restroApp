@@ -12,4 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface StoreRepository extends JpaRepository<Store,Long> {
 
+    Store findOneByCode(String qrCode);
 }

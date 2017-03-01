@@ -20,7 +20,7 @@ public interface StoreService {
 
     /**
      *  Get all the stores.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -35,6 +35,14 @@ public interface StoreService {
     StoreDTO findOne(Long id);
 
     /**
+     *  Get the "qrCode" store.
+     *
+     *  @param qrCode the qrCode of the entity
+     *  @return the entity
+     */
+    StoreDTO findOneByQRCode(String qrCode);
+
+    /**
      *  Delete the "id" store.
      *
      *  @param id the id of the entity
@@ -45,7 +53,7 @@ public interface StoreService {
      * Search for the store corresponding to the query.
      *
      *  @param query the query of the search
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */

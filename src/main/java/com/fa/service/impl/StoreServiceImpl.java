@@ -1,5 +1,7 @@
 package com.fa.service.impl;
 
+import com.fa.domain.TableQR;
+import com.fa.repository.TableQRRepository;
 import com.fa.service.StoreService;
 import com.fa.domain.Store;
 import com.fa.repository.StoreRepository;
@@ -28,15 +30,18 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class StoreServiceImpl implements StoreService{
 
     private final Logger log = LoggerFactory.getLogger(StoreServiceImpl.class);
-    
+
     private final StoreRepository storeRepository;
+
+    private final TableQRRepository tableQRRepository;
 
     private final StoreMapper storeMapper;
 
     private final StoreSearchRepository storeSearchRepository;
 
-    public StoreServiceImpl(StoreRepository storeRepository, StoreMapper storeMapper, StoreSearchRepository storeSearchRepository) {
+    public StoreServiceImpl(StoreRepository storeRepository, TableQRRepository tableQRRepository, StoreMapper storeMapper, StoreSearchRepository storeSearchRepository) {
         this.storeRepository = storeRepository;
+        this.tableQRRepository = tableQRRepository;
         this.storeMapper = storeMapper;
         this.storeSearchRepository = storeSearchRepository;
     }
@@ -59,7 +64,7 @@ public class StoreServiceImpl implements StoreService{
 
     /**
      *  Get all the stores.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -83,6 +88,21 @@ public class StoreServiceImpl implements StoreService{
         log.debug("Request to get Store : {}", id);
         Store store = storeRepository.findOne(id);
         StoreDTO storeDTO = storeMapper.storeToStoreDTO(store);
+        return storeDTO;
+    }
+
+    /**
+     *  Get one store by qrCode.
+     *
+     *  @param qrCode the qrCode of the entity
+     *  @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public StoreDTO findOneByQRCode(String qrCode) {
+        log.debug("Request to get Store : {}", qrCode);
+        TableQR tableQR = tableQRRepository.findOneByCode(qrCode);
+        StoreDTO storeDTO = storeMapper.storeToStoreDTO(tableQR.getStore());
         return storeDTO;
     }
 

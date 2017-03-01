@@ -12,4 +12,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TableQRRepository extends JpaRepository<TableQR,Long> {
 
+    TableQR findOneByCode(String code);
 }

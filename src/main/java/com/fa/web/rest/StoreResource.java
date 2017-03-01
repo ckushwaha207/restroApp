@@ -37,7 +37,7 @@ public class StoreResource {
     private final Logger log = LoggerFactory.getLogger(StoreResource.class);
 
     private static final String ENTITY_NAME = "store";
-        
+
     private final StoreService storeService;
 
     public StoreResource(StoreService storeService) {
@@ -118,6 +118,20 @@ public class StoreResource {
     }
 
     /**
+     * GET  /stores/qrCode/:qrCode : get the "qrCode" store.
+     *
+     * @param qrCode the qrCode of the storeDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the storeDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/stores/qrCode/{qrCode}")
+    @Timed
+    public ResponseEntity<StoreDTO> getStoreByQRCode(@PathVariable String qrCode) {
+        log.debug("REST request to get Store : {}", qrCode);
+        StoreDTO storeDTO = storeService.findOneByQRCode(qrCode);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(storeDTO));
+    }
+
+    /**
      * DELETE  /stores/:id : delete the "id" store.
      *
      * @param id the id of the storeDTO to delete
@@ -135,7 +149,7 @@ public class StoreResource {
      * SEARCH  /_search/stores?query=:query : search for the store corresponding
      * to the query.
      *
-     * @param query the query of the store search 
+     * @param query the query of the store search
      * @param pageable the pagination information
      * @return the result of the search
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
