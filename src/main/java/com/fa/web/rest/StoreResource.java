@@ -118,16 +118,16 @@ public class StoreResource {
     }
 
     /**
-     * GET  /stores/qrCode/:qrCode : get the "qrCode" store.
+     * GET  /stores/qr-code/:code : get the "qrCode" store.
      *
-     * @param qrCode the qrCode of the storeDTO to retrieve
+     * @param code the qrCode of the storeDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the storeDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/stores/qrCode/{qrCode}")
+    @GetMapping("/stores/qr-code/{code}")
     @Timed
-    public ResponseEntity<StoreDTO> getStoreByQRCode(@PathVariable String qrCode) {
-        log.debug("REST request to get Store : {}", qrCode);
-        StoreDTO storeDTO = storeService.findOneByQRCode(qrCode);
+    public ResponseEntity<StoreDTO> getStoreByQRCode(@PathVariable String code) {
+        log.debug("REST request to get Store : {}", code);
+        StoreDTO storeDTO = storeService.findOneByQRCode(code);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(storeDTO));
     }
 
