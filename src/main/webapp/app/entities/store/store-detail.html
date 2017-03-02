@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.store.detail.title">Store</span> {{vm.store.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.store.code">Code</span></dt>
+        <dd>
+            <span>{{vm.store.code}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.name">Name</span></dt>
+        <dd>
+            <span>{{vm.store.name}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.timings">Timings</span></dt>
+        <dd>
+            <span>{{vm.store.timings}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.website">Website</span></dt>
+        <dd>
+            <span>{{vm.store.website}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.email">Email</span></dt>
+        <dd>
+            <span>{{vm.store.email}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{vm.store.phoneNumber}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.mobileNumber">Mobile Number</span></dt>
+        <dd>
+            <span>{{vm.store.mobileNumber}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.faxNumber">Fax Number</span></dt>
+        <dd>
+            <span>{{vm.store.faxNumber}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.siteUrl">Site Url</span></dt>
+        <dd>
+            <span>{{vm.store.siteUrl}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.location">Location</span></dt>
+        <dd>
+            <a ui-sref="location-detail({id:vm.store.locationId})">{{vm.store.locationId}}</a>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.organization">Organization</span></dt>
+        <dd>
+            <a ui-sref="organization-detail({id:vm.store.organizationId})">{{vm.store.organizationId}}</a>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.store.storeGroup">Store Group</span></dt>
+        <dd>
+            <a ui-sref="store-group-detail({id:vm.store.storeGroupId})">{{vm.store.storeGroupId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="store-detail.edit({id:vm.store.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

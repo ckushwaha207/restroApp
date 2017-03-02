@@ -1,0 +1,67 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPaymentLabel" data-translate="foodAppetencyApp.payment.home.createOrEditLabel">Create or edit a Payment</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.payment.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.payment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.payment.method" for="field_method">Method</label>
+            <select class="form-control" name="method" ng-model="vm.payment.method" id="field_method">
+                <option value="CASH" data-translate="foodAppetencyApp.PaymentMethod.CASH">CASH</option>
+                <option value="CREDIT_CARD" data-translate="foodAppetencyApp.PaymentMethod.CREDIT_CARD">CREDIT_CARD</option>
+                <option value="DEBIT_CARD" data-translate="foodAppetencyApp.PaymentMethod.DEBIT_CARD">DEBIT_CARD</option>
+                <option value="NET_BANKING" data-translate="foodAppetencyApp.PaymentMethod.NET_BANKING">NET_BANKING</option>
+                <option value="MOBILE_BANKING" data-translate="foodAppetencyApp.PaymentMethod.MOBILE_BANKING">MOBILE_BANKING</option>
+                <option value="PAYTM" data-translate="foodAppetencyApp.PaymentMethod.PAYTM">PAYTM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.payment.state" for="field_state">State</label>
+            <select class="form-control" name="state" ng-model="vm.payment.state" id="field_state">
+                <option value="INITIAL" data-translate="foodAppetencyApp.PaymentState.INITIAL">INITIAL</option>
+                <option value="AUTHORIZED" data-translate="foodAppetencyApp.PaymentState.AUTHORIZED">AUTHORIZED</option>
+                <option value="AUTHORIZED_FAILED" data-translate="foodAppetencyApp.PaymentState.AUTHORIZED_FAILED">AUTHORIZED_FAILED</option>
+                <option value="CREDIT_FAILED" data-translate="foodAppetencyApp.PaymentState.CREDIT_FAILED">CREDIT_FAILED</option>
+                <option value="REMOVED" data-translate="foodAppetencyApp.PaymentState.REMOVED">REMOVED</option>
+                <option value="SETTLE_FAILED" data-translate="foodAppetencyApp.PaymentState.SETTLE_FAILED">SETTLE_FAILED</option>
+                <option value="SETTLED" data-translate="foodAppetencyApp.PaymentState.SETTLED">SETTLED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.payment.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                    ng-model="vm.payment.amount"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="foodAppetencyApp.payment.authorizedAmount" for="field_authorizedAmount">Authorized Amount</label>
+            <input type="number" class="form-control" name="authorizedAmount" id="field_authorizedAmount"
+                    ng-model="vm.payment.authorizedAmount"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="foodAppetencyApp.payment.order" for="field_order">Order</label>
+            <select class="form-control" id="field_order" name="order" ng-model="vm.payment.orderId" ng-options="order.id as order.id for order in vm.orders"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

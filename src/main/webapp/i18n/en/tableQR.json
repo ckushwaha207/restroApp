@@ -1,0 +1,24 @@
+{
+    "foodAppetencyApp": {
+        "tableQR" : {
+            "home": {
+                "title": "Table QRS",
+                "createLabel": "Create a new Table QR",
+                "createOrEditLabel": "Create or edit a Table QR",
+                "search": "Search for Table QR"
+            },
+            "created": "A new Table QR is created with identifier {{ param }}",
+            "updated": "A Table QR is updated with identifier {{ param }}",
+            "deleted": "A Table QR is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Table QR {{ id }}?"
+            },
+            "detail": {
+                "title": "Table QR"
+            },
+            "code": "Code",
+            "table": "Table",
+            "store": "Store"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.commerceItem.detail.title">Commerce Item</span> {{vm.commerceItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.commerceItem.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{vm.commerceItem.quantity}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.commerceItem.state">State</span></dt>
+        <dd>
+            <span data-translate="{{'foodAppetencyApp.ItemState.' + vm.commerceItem.state}}">{{vm.commerceItem.state}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.commerceItem.stateDetail">State Detail</span></dt>
+        <dd>
+            <span>{{vm.commerceItem.stateDetail}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.commerceItem.totalPrice">Total Price</span></dt>
+        <dd>
+            <span>{{vm.commerceItem.totalPrice}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.commerceItem.product">Product</span></dt>
+        <dd>
+            <a ui-sref="menu-item-detail({id:vm.commerceItem.productId})">{{vm.commerceItem.productName}}</a>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.commerceItem.order">Order</span></dt>
+        <dd>
+            <a ui-sref="order-detail({id:vm.commerceItem.orderId})">{{vm.commerceItem.orderId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="commerce-item-detail.edit({id:vm.commerceItem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

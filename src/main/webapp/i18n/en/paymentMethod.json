@@ -1,0 +1,13 @@
+{
+    "foodAppetencyApp": {
+        "PaymentMethod" : {
+            "null": "",
+            "CASH": "CASH",
+            "CREDIT_CARD": "CREDIT_CARD",
+            "DEBIT_CARD": "DEBIT_CARD",
+            "NET_BANKING": "NET_BANKING",
+            "MOBILE_BANKING": "MOBILE_BANKING",
+            "PAYTM": "PAYTM"
+        }
+    }
+}

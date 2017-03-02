@@ -1,0 +1,10 @@
+{
+    "foodAppetencyApp": {
+        "Diet" : {
+            "null": "",
+            "VEG": "VEG",
+            "NON_VEG": "NON_VEG",
+            "EGG": "EGG"
+        }
+    }
+}

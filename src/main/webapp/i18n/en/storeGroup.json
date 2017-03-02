@@ -1,0 +1,26 @@
+{
+    "foodAppetencyApp": {
+        "storeGroup" : {
+            "home": {
+                "title": "Store Groups",
+                "createLabel": "Create a new Store Group",
+                "createOrEditLabel": "Create or edit a Store Group",
+                "search": "Search for Store Group"
+            },
+            "created": "A new Store Group is created with identifier {{ param }}",
+            "updated": "A Store Group is updated with identifier {{ param }}",
+            "deleted": "A Store Group is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Store Group {{ id }}?"
+            },
+            "detail": {
+                "title": "Store Group"
+            },
+            "name": "Name",
+            "siteUrl": "Site Url",
+            "stores": "Stores",
+            "organization": "Organization",
+            "user": "User"
+        }
+    }
+}

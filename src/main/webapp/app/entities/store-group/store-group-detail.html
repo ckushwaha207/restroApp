@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="foodAppetencyApp.storeGroup.detail.title">Store Group</span> {{vm.storeGroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="foodAppetencyApp.storeGroup.name">Name</span></dt>
+        <dd>
+            <span>{{vm.storeGroup.name}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.storeGroup.siteUrl">Site Url</span></dt>
+        <dd>
+            <span>{{vm.storeGroup.siteUrl}}</span>
+        </dd>
+        <dt><span data-translate="foodAppetencyApp.storeGroup.organization">Organization</span></dt>
+        <dd>
+            <a ui-sref="organization-detail({id:vm.storeGroup.organizationId})">{{vm.storeGroup.organizationId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="store-group-detail.edit({id:vm.storeGroup.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

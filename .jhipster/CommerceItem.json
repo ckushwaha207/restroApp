@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "menuItem",
+            "otherEntityField": "name",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItem"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "order",
+            "otherEntityName": "order",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "ItemState",
+            "fieldValues": "INITIAL,ITEM_NOT_FOUND,OUT_OF_STOCK,ADDED,REMOVED,PROCESSING,PROCESSED,PENDING_DELIVERY,DELIVERED"
+        },
+        {
+            "fieldName": "stateDetail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "totalPrice",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170221064738",
+    "entityTableName": "commerce_item",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl"
+}
