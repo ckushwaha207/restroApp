@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('OrderController', OrderController);
 
-    OrderController.$inject = ['Order', 'OrderSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    OrderController.$inject = ['$state', 'Order', 'OrderSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function OrderController(Order, OrderSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function OrderController($state, Order, OrderSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

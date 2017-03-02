@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('DiningTableController', DiningTableController);
 
-    DiningTableController.$inject = ['DiningTable', 'DiningTableSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    DiningTableController.$inject = ['$state', 'DiningTable', 'DiningTableSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function DiningTableController(DiningTable, DiningTableSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function DiningTableController($state, DiningTable, DiningTableSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

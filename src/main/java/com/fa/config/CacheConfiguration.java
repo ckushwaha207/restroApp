@@ -1,7 +1,17 @@
 package com.fa.config;
 
+import io.github.jhipster.config.JHipsterProperties;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.expiry.Duration;
+import org.ehcache.expiry.Expirations;
+import org.ehcache.jsr107.Eh107Configuration;
+
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 
@@ -10,4 +20,51 @@ import org.springframework.context.annotation.*;
 @AutoConfigureAfter(value = { MetricsConfiguration.class })
 @AutoConfigureBefore(value = { WebConfigurer.class, DatabaseConfiguration.class })
 public class CacheConfiguration {
+
+    private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
+
+    public CacheConfiguration(JHipsterProperties jHipsterProperties) {
+        JHipsterProperties.Cache.Ehcache ehcache =
+            jHipsterProperties.getCache().getEhcache();
+
+        jcacheConfiguration = Eh107Configuration.fromEhcacheCacheConfiguration(
+            CacheConfigurationBuilder.newCacheConfigurationBuilder(Object.class, Object.class,
+                ResourcePoolsBuilder.heap(ehcache.getMaxEntries()))
+                .withExpiry(Expirations.timeToLiveExpiration(Duration.of(ehcache.getTimeToLiveSeconds(), TimeUnit.SECONDS)))
+                .build());
+    }
+
+    @Bean
+    public JCacheManagerCustomizer cacheManagerCustomizer() {
+        return cm -> {
+            cm.createCache(com.fa.domain.User.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Authority.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.fa.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.MenuItem.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.BusinessUser.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.DiningTable.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Menu.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Menu.class.getName() + ".categories", jcacheConfiguration);
+            cm.createCache(com.fa.domain.MenuCategory.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.MenuCategory.class.getName() + ".items", jcacheConfiguration);
+            cm.createCache(com.fa.domain.CommerceItem.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Order.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Order.class.getName() + ".items", jcacheConfiguration);
+            cm.createCache(com.fa.domain.Order.class.getName() + ".payments", jcacheConfiguration);
+            cm.createCache(com.fa.domain.Organization.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Payment.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Payment.class.getName() + ".authorizationStatuses", jcacheConfiguration);
+            cm.createCache(com.fa.domain.Store.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.Store.class.getName() + ".tables", jcacheConfiguration);
+            cm.createCache(com.fa.domain.Store.class.getName() + ".menus", jcacheConfiguration);
+            cm.createCache(com.fa.domain.StoreGroup.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.StoreGroup.class.getName() + ".stores", jcacheConfiguration);
+            cm.createCache(com.fa.domain.TableQR.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fa.domain.TransactionStatus.class.getName(), jcacheConfiguration);
+            // jhipster-needle-ehcache-add-entry
+        };
+    }
 }

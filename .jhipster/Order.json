@@ -14,12 +14,10 @@
             "otherEntityRelationshipName": "order"
         },
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "profile",
             "otherEntityName": "user",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "login",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "order"
+            "otherEntityField": "login"
         }
     ],
     "fields": [
@@ -41,9 +39,9 @@
             "fieldType": "Double"
         }
     ],
-    "changelogDate": "20170221064738",
-    "dto": "mapstruct",
-    "service": "serviceImpl",
+    "changelogDate": "20170302141944",
     "entityTableName": "pa_order",
-    "pagination": "pagination"
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl"
 }

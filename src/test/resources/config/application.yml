@@ -41,9 +41,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-    cache:
-        jcache:
-            config: config/ehcache/ehcache-dev.xml
     data:
         elasticsearch:
             cluster-name:
@@ -54,6 +51,8 @@ spring:
                   data: target/elasticsearch/data
     mail:
         host: localhost
+    messages:
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false
@@ -85,7 +84,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 5a7f2f2920eff7f94f07ee1162f49bc1c73311e8
+                secret: cb61bfd5df48bd92dcdea9f9383f581b0d25a792
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

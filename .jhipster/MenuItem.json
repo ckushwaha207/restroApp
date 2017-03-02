@@ -48,7 +48,7 @@
             "fieldValues": "VEG,NON_VEG,EGG"
         }
     ],
-    "changelogDate": "20170221064738",
+    "changelogDate": "20170302141944",
     "entityTableName": "menu_item",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('BusinessUserController', BusinessUserController);
 
-    BusinessUserController.$inject = ['BusinessUser', 'BusinessUserSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    BusinessUserController.$inject = ['$state', 'BusinessUser', 'BusinessUserSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function BusinessUserController(BusinessUser, BusinessUserSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function BusinessUserController($state, BusinessUser, BusinessUserSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

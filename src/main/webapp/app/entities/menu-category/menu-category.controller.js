@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('MenuCategoryController', MenuCategoryController);
 
-    MenuCategoryController.$inject = ['MenuCategory', 'MenuCategorySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    MenuCategoryController.$inject = ['$state', 'MenuCategory', 'MenuCategorySearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function MenuCategoryController(MenuCategory, MenuCategorySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function MenuCategoryController($state, MenuCategory, MenuCategorySearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

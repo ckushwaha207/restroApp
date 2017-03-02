@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
@@ -54,7 +53,7 @@ public class OrderResource {
      */
     @PostMapping("/orders")
     @Timed
-    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody OrderDTO orderDTO) throws URISyntaxException {
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) throws URISyntaxException {
         log.debug("REST request to save Order : {}", orderDTO);
         if (orderDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new order cannot already have an ID")).body(null);
@@ -74,7 +73,7 @@ public class OrderResource {
      */
     @PostMapping("/orders/create")
     @Timed
-    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody CartDTO cartDTO) throws URISyntaxException {
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody CartDTO cartDTO) throws URISyntaxException {
         log.debug("REST request to save Order : {}", cartDTO);
 
         if (cartDTO.getItems() == null || cartDTO.getItems().isEmpty()) {
@@ -97,7 +96,7 @@ public class OrderResource {
      */
     @PutMapping("/orders")
     @Timed
-    public ResponseEntity<OrderDTO> updateOrder(@Valid @RequestBody OrderDTO orderDTO) throws URISyntaxException {
+    public ResponseEntity<OrderDTO> updateOrder(@RequestBody OrderDTO orderDTO) throws URISyntaxException {
         log.debug("REST request to update Order : {}", orderDTO);
         if (orderDTO.getId() == null) {
             return createOrder(orderDTO);

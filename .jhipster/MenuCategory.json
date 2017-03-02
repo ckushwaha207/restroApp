@@ -23,7 +23,7 @@
             ]
         }
     ],
-    "changelogDate": "20170221064738",
+    "changelogDate": "20170302141944",
     "entityTableName": "menu_category",
     "dto": "mapstruct",
     "pagination": "pagination",

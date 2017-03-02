@@ -25,7 +25,7 @@
         }
     ],
     "fields": [],
-    "changelogDate": "20170221064738",
+    "changelogDate": "20170302141944",
     "entityTableName": "business_user",
     "dto": "mapstruct",
     "pagination": "pagination",

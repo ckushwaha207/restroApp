@@ -34,7 +34,7 @@
             "fieldType": "Double"
         }
     ],
-    "changelogDate": "20170221064738",
+    "changelogDate": "20170302141944",
     "entityTableName": "payment",
     "dto": "mapstruct",
     "pagination": "pagination",

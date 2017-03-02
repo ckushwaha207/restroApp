@@ -35,7 +35,7 @@
             "fieldType": "Double"
         }
     ],
-    "changelogDate": "20170221064738",
+    "changelogDate": "20170302141944",
     "entityTableName": "commerce_item",
     "dto": "mapstruct",
     "pagination": "pagination",

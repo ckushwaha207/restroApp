@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('TransactionStatusController', TransactionStatusController);
 
-    TransactionStatusController.$inject = ['TransactionStatus', 'TransactionStatusSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    TransactionStatusController.$inject = ['$state', 'TransactionStatus', 'TransactionStatusSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function TransactionStatusController(TransactionStatus, TransactionStatusSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function TransactionStatusController($state, TransactionStatus, TransactionStatusSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

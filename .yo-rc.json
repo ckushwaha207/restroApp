@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.0.5",
+    "jhipsterVersion": "4.0.7",
     "baseName": "FoodAppetency",
     "packageName": "com.fa",
     "packageFolder": "com/fa",
@@ -17,7 +17,7 @@
     "serviceDiscoveryType": false,
     "buildTool": "gradle",
     "enableSocialSignIn": true,
-    "jwtSecretKey": "5a7f2f2920eff7f94f07ee1162f49bc1c73311e8",
+    "jwtSecretKey": "cb61bfd5df48bd92dcdea9f9383f581b0d25a792",
     "clientFramework": "angular1",
     "useSass": true,
     "clientPackageManager": "yarn",
