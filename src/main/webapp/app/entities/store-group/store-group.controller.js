@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('StoreGroupController', StoreGroupController);
 
-    StoreGroupController.$inject = ['StoreGroup', 'StoreGroupSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    StoreGroupController.$inject = ['$state', 'StoreGroup', 'StoreGroupSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function StoreGroupController(StoreGroup, StoreGroupSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function StoreGroupController($state, StoreGroup, StoreGroupSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

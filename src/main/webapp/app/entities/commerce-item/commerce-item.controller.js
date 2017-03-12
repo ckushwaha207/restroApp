@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('CommerceItemController', CommerceItemController);
 
-    CommerceItemController.$inject = ['CommerceItem', 'CommerceItemSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    CommerceItemController.$inject = ['$state', 'CommerceItem', 'CommerceItemSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function CommerceItemController(CommerceItem, CommerceItemSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function CommerceItemController($state, CommerceItem, CommerceItemSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

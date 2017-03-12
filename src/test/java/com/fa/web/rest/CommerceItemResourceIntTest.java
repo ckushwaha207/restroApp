@@ -100,10 +100,10 @@ public class CommerceItemResourceIntTest {
      */
     public static CommerceItem createEntity(EntityManager em) {
         CommerceItem commerceItem = new CommerceItem()
-                .quantity(DEFAULT_QUANTITY)
-                .state(DEFAULT_STATE)
-                .stateDetail(DEFAULT_STATE_DETAIL)
-                .totalPrice(DEFAULT_TOTAL_PRICE);
+            .quantity(DEFAULT_QUANTITY)
+            .state(DEFAULT_STATE)
+            .stateDetail(DEFAULT_STATE_DETAIL)
+            .totalPrice(DEFAULT_TOTAL_PRICE);
         return commerceItem;
     }
 
@@ -120,7 +120,6 @@ public class CommerceItemResourceIntTest {
 
         // Create the CommerceItem
         CommerceItemDTO commerceItemDTO = commerceItemMapper.commerceItemToCommerceItemDTO(commerceItem);
-
         restCommerceItemMockMvc.perform(post("/api/commerce-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(commerceItemDTO)))
@@ -146,14 +145,13 @@ public class CommerceItemResourceIntTest {
         int databaseSizeBeforeCreate = commerceItemRepository.findAll().size();
 
         // Create the CommerceItem with an existing ID
-        CommerceItem existingCommerceItem = new CommerceItem();
-        existingCommerceItem.setId(1L);
-        CommerceItemDTO existingCommerceItemDTO = commerceItemMapper.commerceItemToCommerceItemDTO(existingCommerceItem);
+        commerceItem.setId(1L);
+        CommerceItemDTO commerceItemDTO = commerceItemMapper.commerceItemToCommerceItemDTO(commerceItem);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCommerceItemMockMvc.perform(post("/api/commerce-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingCommerceItemDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(commerceItemDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -214,10 +212,10 @@ public class CommerceItemResourceIntTest {
         // Update the commerceItem
         CommerceItem updatedCommerceItem = commerceItemRepository.findOne(commerceItem.getId());
         updatedCommerceItem
-                .quantity(UPDATED_QUANTITY)
-                .state(UPDATED_STATE)
-                .stateDetail(UPDATED_STATE_DETAIL)
-                .totalPrice(UPDATED_TOTAL_PRICE);
+            .quantity(UPDATED_QUANTITY)
+            .state(UPDATED_STATE)
+            .stateDetail(UPDATED_STATE_DETAIL)
+            .totalPrice(UPDATED_TOTAL_PRICE);
         CommerceItemDTO commerceItemDTO = commerceItemMapper.commerceItemToCommerceItemDTO(updatedCommerceItem);
 
         restCommerceItemMockMvc.perform(put("/api/commerce-items")
@@ -299,6 +297,7 @@ public class CommerceItemResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(CommerceItem.class);
     }

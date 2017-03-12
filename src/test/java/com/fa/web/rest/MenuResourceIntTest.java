@@ -90,7 +90,7 @@ public class MenuResourceIntTest {
      */
     public static Menu createEntity(EntityManager em) {
         Menu menu = new Menu()
-                .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME);
         return menu;
     }
 
@@ -107,7 +107,6 @@ public class MenuResourceIntTest {
 
         // Create the Menu
         MenuDTO menuDTO = menuMapper.menuToMenuDTO(menu);
-
         restMenuMockMvc.perform(post("/api/menus")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(menuDTO)))
@@ -130,14 +129,13 @@ public class MenuResourceIntTest {
         int databaseSizeBeforeCreate = menuRepository.findAll().size();
 
         // Create the Menu with an existing ID
-        Menu existingMenu = new Menu();
-        existingMenu.setId(1L);
-        MenuDTO existingMenuDTO = menuMapper.menuToMenuDTO(existingMenu);
+        menu.setId(1L);
+        MenuDTO menuDTO = menuMapper.menuToMenuDTO(menu);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMenuMockMvc.perform(post("/api/menus")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingMenuDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(menuDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -211,7 +209,7 @@ public class MenuResourceIntTest {
         // Update the menu
         Menu updatedMenu = menuRepository.findOne(menu.getId());
         updatedMenu
-                .name(UPDATED_NAME);
+            .name(UPDATED_NAME);
         MenuDTO menuDTO = menuMapper.menuToMenuDTO(updatedMenu);
 
         restMenuMockMvc.perform(put("/api/menus")
@@ -287,6 +285,7 @@ public class MenuResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Menu.class);
     }

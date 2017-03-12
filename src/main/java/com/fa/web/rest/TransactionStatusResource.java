@@ -95,8 +95,7 @@ public class TransactionStatusResource {
      */
     @GetMapping("/transaction-statuses")
     @Timed
-    public ResponseEntity<List<TransactionStatusDTO>> getAllTransactionStatuses(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<TransactionStatusDTO>> getAllTransactionStatuses(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of TransactionStatuses");
         Page<TransactionStatusDTO> page = transactionStatusService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transaction-statuses");
@@ -142,8 +141,7 @@ public class TransactionStatusResource {
      */
     @GetMapping("/_search/transaction-statuses")
     @Timed
-    public ResponseEntity<List<TransactionStatusDTO>> searchTransactionStatuses(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<TransactionStatusDTO>> searchTransactionStatuses(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of TransactionStatuses for query {}", query);
         Page<TransactionStatusDTO> page = transactionStatusService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/transaction-statuses");

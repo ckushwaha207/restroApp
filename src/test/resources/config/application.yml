@@ -19,6 +19,8 @@ spring:
         name: FoodAppetency
     jackson:
         serialization.write_dates_as_timestamps: false
+    cache:
+        type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:FoodAppetency;DB_CLOSE_DELAY=-1
@@ -41,9 +43,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-    cache:
-        jcache:
-            config: config/ehcache/ehcache-dev.xml
     data:
         elasticsearch:
             cluster-name:
@@ -54,6 +53,8 @@ spring:
                   data: target/elasticsearch/data
     mail:
         host: localhost
+    messages:
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false

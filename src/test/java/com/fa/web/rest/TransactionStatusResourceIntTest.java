@@ -102,11 +102,11 @@ public class TransactionStatusResourceIntTest {
      */
     public static TransactionStatus createEntity(EntityManager em) {
         TransactionStatus transactionStatus = new TransactionStatus()
-                .transactionId(DEFAULT_TRANSACTION_ID)
-                .transactionSuccess(DEFAULT_TRANSACTION_SUCCESS)
-                .amount(DEFAULT_AMOUNT)
-                .errorCode(DEFAULT_ERROR_CODE)
-                .errorMessage(DEFAULT_ERROR_MESSAGE);
+            .transactionId(DEFAULT_TRANSACTION_ID)
+            .transactionSuccess(DEFAULT_TRANSACTION_SUCCESS)
+            .amount(DEFAULT_AMOUNT)
+            .errorCode(DEFAULT_ERROR_CODE)
+            .errorMessage(DEFAULT_ERROR_MESSAGE);
         return transactionStatus;
     }
 
@@ -123,7 +123,6 @@ public class TransactionStatusResourceIntTest {
 
         // Create the TransactionStatus
         TransactionStatusDTO transactionStatusDTO = transactionStatusMapper.transactionStatusToTransactionStatusDTO(transactionStatus);
-
         restTransactionStatusMockMvc.perform(post("/api/transaction-statuses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(transactionStatusDTO)))
@@ -150,14 +149,13 @@ public class TransactionStatusResourceIntTest {
         int databaseSizeBeforeCreate = transactionStatusRepository.findAll().size();
 
         // Create the TransactionStatus with an existing ID
-        TransactionStatus existingTransactionStatus = new TransactionStatus();
-        existingTransactionStatus.setId(1L);
-        TransactionStatusDTO existingTransactionStatusDTO = transactionStatusMapper.transactionStatusToTransactionStatusDTO(existingTransactionStatus);
+        transactionStatus.setId(1L);
+        TransactionStatusDTO transactionStatusDTO = transactionStatusMapper.transactionStatusToTransactionStatusDTO(transactionStatus);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTransactionStatusMockMvc.perform(post("/api/transaction-statuses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingTransactionStatusDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(transactionStatusDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -239,11 +237,11 @@ public class TransactionStatusResourceIntTest {
         // Update the transactionStatus
         TransactionStatus updatedTransactionStatus = transactionStatusRepository.findOne(transactionStatus.getId());
         updatedTransactionStatus
-                .transactionId(UPDATED_TRANSACTION_ID)
-                .transactionSuccess(UPDATED_TRANSACTION_SUCCESS)
-                .amount(UPDATED_AMOUNT)
-                .errorCode(UPDATED_ERROR_CODE)
-                .errorMessage(UPDATED_ERROR_MESSAGE);
+            .transactionId(UPDATED_TRANSACTION_ID)
+            .transactionSuccess(UPDATED_TRANSACTION_SUCCESS)
+            .amount(UPDATED_AMOUNT)
+            .errorCode(UPDATED_ERROR_CODE)
+            .errorMessage(UPDATED_ERROR_MESSAGE);
         TransactionStatusDTO transactionStatusDTO = transactionStatusMapper.transactionStatusToTransactionStatusDTO(updatedTransactionStatus);
 
         restTransactionStatusMockMvc.perform(put("/api/transaction-statuses")
@@ -327,6 +325,7 @@ public class TransactionStatusResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(TransactionStatus.class);
     }

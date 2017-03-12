@@ -94,8 +94,7 @@ public class BusinessUserResource {
      */
     @GetMapping("/business-users")
     @Timed
-    public ResponseEntity<List<BusinessUserDTO>> getAllBusinessUsers(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<BusinessUserDTO>> getAllBusinessUsers(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of BusinessUsers");
         Page<BusinessUserDTO> page = businessUserService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/business-users");
@@ -141,8 +140,7 @@ public class BusinessUserResource {
      */
     @GetMapping("/_search/business-users")
     @Timed
-    public ResponseEntity<List<BusinessUserDTO>> searchBusinessUsers(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<BusinessUserDTO>> searchBusinessUsers(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of BusinessUsers for query {}", query);
         Page<BusinessUserDTO> page = businessUserService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/business-users");

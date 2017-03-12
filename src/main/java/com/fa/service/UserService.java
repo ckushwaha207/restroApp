@@ -3,6 +3,7 @@ package com.fa.service;
 import com.fa.domain.Authority;
 import com.fa.domain.User;
 import com.fa.repository.AuthorityRepository;
+import com.fa.config.Constants;
 import com.fa.repository.UserRepository;
 import com.fa.repository.search.UserSearchRepository;
 import com.fa.security.AuthoritiesConstants;
@@ -203,7 +204,7 @@ public class UserService {
 
     @Transactional(readOnly = true)    
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).map(UserDTO::new);
+        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)

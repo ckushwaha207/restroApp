@@ -101,10 +101,10 @@ public class PaymentResourceIntTest {
      */
     public static Payment createEntity(EntityManager em) {
         Payment payment = new Payment()
-                .method(DEFAULT_METHOD)
-                .state(DEFAULT_STATE)
-                .amount(DEFAULT_AMOUNT)
-                .authorizedAmount(DEFAULT_AUTHORIZED_AMOUNT);
+            .method(DEFAULT_METHOD)
+            .state(DEFAULT_STATE)
+            .amount(DEFAULT_AMOUNT)
+            .authorizedAmount(DEFAULT_AUTHORIZED_AMOUNT);
         return payment;
     }
 
@@ -121,7 +121,6 @@ public class PaymentResourceIntTest {
 
         // Create the Payment
         PaymentDTO paymentDTO = paymentMapper.paymentToPaymentDTO(payment);
-
         restPaymentMockMvc.perform(post("/api/payments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(paymentDTO)))
@@ -147,14 +146,13 @@ public class PaymentResourceIntTest {
         int databaseSizeBeforeCreate = paymentRepository.findAll().size();
 
         // Create the Payment with an existing ID
-        Payment existingPayment = new Payment();
-        existingPayment.setId(1L);
-        PaymentDTO existingPaymentDTO = paymentMapper.paymentToPaymentDTO(existingPayment);
+        payment.setId(1L);
+        PaymentDTO paymentDTO = paymentMapper.paymentToPaymentDTO(payment);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPaymentMockMvc.perform(post("/api/payments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingPaymentDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(paymentDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -215,10 +213,10 @@ public class PaymentResourceIntTest {
         // Update the payment
         Payment updatedPayment = paymentRepository.findOne(payment.getId());
         updatedPayment
-                .method(UPDATED_METHOD)
-                .state(UPDATED_STATE)
-                .amount(UPDATED_AMOUNT)
-                .authorizedAmount(UPDATED_AUTHORIZED_AMOUNT);
+            .method(UPDATED_METHOD)
+            .state(UPDATED_STATE)
+            .amount(UPDATED_AMOUNT)
+            .authorizedAmount(UPDATED_AUTHORIZED_AMOUNT);
         PaymentDTO paymentDTO = paymentMapper.paymentToPaymentDTO(updatedPayment);
 
         restPaymentMockMvc.perform(put("/api/payments")
@@ -300,6 +298,7 @@ public class PaymentResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Payment.class);
     }

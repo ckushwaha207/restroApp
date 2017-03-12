@@ -103,7 +103,6 @@ public class CustomerResourceIntTest {
 
         // Create the Customer
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
@@ -125,14 +124,13 @@ public class CustomerResourceIntTest {
         int databaseSizeBeforeCreate = customerRepository.findAll().size();
 
         // Create the Customer with an existing ID
-        Customer existingCustomer = new Customer();
-        existingCustomer.setId(1L);
-        CustomerDTO existingCustomerDTO = customerMapper.customerToCustomerDTO(existingCustomer);
+        customer.setId(1L);
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingCustomerDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -257,6 +255,7 @@ public class CustomerResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Customer.class);
     }

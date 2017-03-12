@@ -90,7 +90,7 @@ public class MenuCategoryResourceIntTest {
      */
     public static MenuCategory createEntity(EntityManager em) {
         MenuCategory menuCategory = new MenuCategory()
-                .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME);
         return menuCategory;
     }
 
@@ -107,7 +107,6 @@ public class MenuCategoryResourceIntTest {
 
         // Create the MenuCategory
         MenuCategoryDTO menuCategoryDTO = menuCategoryMapper.menuCategoryToMenuCategoryDTO(menuCategory);
-
         restMenuCategoryMockMvc.perform(post("/api/menu-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(menuCategoryDTO)))
@@ -130,14 +129,13 @@ public class MenuCategoryResourceIntTest {
         int databaseSizeBeforeCreate = menuCategoryRepository.findAll().size();
 
         // Create the MenuCategory with an existing ID
-        MenuCategory existingMenuCategory = new MenuCategory();
-        existingMenuCategory.setId(1L);
-        MenuCategoryDTO existingMenuCategoryDTO = menuCategoryMapper.menuCategoryToMenuCategoryDTO(existingMenuCategory);
+        menuCategory.setId(1L);
+        MenuCategoryDTO menuCategoryDTO = menuCategoryMapper.menuCategoryToMenuCategoryDTO(menuCategory);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMenuCategoryMockMvc.perform(post("/api/menu-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingMenuCategoryDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(menuCategoryDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -211,7 +209,7 @@ public class MenuCategoryResourceIntTest {
         // Update the menuCategory
         MenuCategory updatedMenuCategory = menuCategoryRepository.findOne(menuCategory.getId());
         updatedMenuCategory
-                .name(UPDATED_NAME);
+            .name(UPDATED_NAME);
         MenuCategoryDTO menuCategoryDTO = menuCategoryMapper.menuCategoryToMenuCategoryDTO(updatedMenuCategory);
 
         restMenuCategoryMockMvc.perform(put("/api/menu-categories")
@@ -287,6 +285,7 @@ public class MenuCategoryResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(MenuCategory.class);
     }

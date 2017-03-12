@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['Organization', 'OrganizationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    OrganizationController.$inject = ['$state', 'Organization', 'OrganizationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function OrganizationController(Organization, OrganizationSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function OrganizationController($state, Organization, OrganizationSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

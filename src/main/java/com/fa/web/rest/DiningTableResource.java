@@ -95,8 +95,7 @@ public class DiningTableResource {
      */
     @GetMapping("/dining-tables")
     @Timed
-    public ResponseEntity<List<DiningTableDTO>> getAllDiningTables(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<DiningTableDTO>> getAllDiningTables(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of DiningTables");
         Page<DiningTableDTO> page = diningTableService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dining-tables");
@@ -142,8 +141,7 @@ public class DiningTableResource {
      */
     @GetMapping("/_search/dining-tables")
     @Timed
-    public ResponseEntity<List<DiningTableDTO>> searchDiningTables(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<DiningTableDTO>> searchDiningTables(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of DiningTables for query {}", query);
         Page<DiningTableDTO> page = diningTableService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/dining-tables");

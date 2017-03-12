@@ -95,8 +95,7 @@ public class LocationResource {
      */
     @GetMapping("/locations")
     @Timed
-    public ResponseEntity<List<LocationDTO>> getAllLocations(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<LocationDTO>> getAllLocations(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Locations");
         Page<LocationDTO> page = locationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/locations");
@@ -142,8 +141,7 @@ public class LocationResource {
      */
     @GetMapping("/_search/locations")
     @Timed
-    public ResponseEntity<List<LocationDTO>> searchLocations(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<LocationDTO>> searchLocations(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Locations for query {}", query);
         Page<LocationDTO> page = locationService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/locations");

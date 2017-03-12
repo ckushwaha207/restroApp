@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('TableQRController', TableQRController);
 
-    TableQRController.$inject = ['TableQR', 'TableQRSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    TableQRController.$inject = ['$state', 'TableQR', 'TableQRSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function TableQRController(TableQR, TableQRSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function TableQRController($state, TableQR, TableQRSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

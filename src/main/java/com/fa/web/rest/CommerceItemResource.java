@@ -94,8 +94,7 @@ public class CommerceItemResource {
      */
     @GetMapping("/commerce-items")
     @Timed
-    public ResponseEntity<List<CommerceItemDTO>> getAllCommerceItems(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<CommerceItemDTO>> getAllCommerceItems(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of CommerceItems");
         Page<CommerceItemDTO> page = commerceItemService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/commerce-items");
@@ -141,8 +140,7 @@ public class CommerceItemResource {
      */
     @GetMapping("/_search/commerce-items")
     @Timed
-    public ResponseEntity<List<CommerceItemDTO>> searchCommerceItems(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<CommerceItemDTO>> searchCommerceItems(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of CommerceItems for query {}", query);
         Page<CommerceItemDTO> page = commerceItemService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/commerce-items");

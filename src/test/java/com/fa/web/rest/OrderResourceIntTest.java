@@ -100,10 +100,10 @@ public class OrderResourceIntTest {
      */
     public static Order createEntity(EntityManager em) {
         Order order = new Order()
-                .orderNumber(DEFAULT_ORDER_NUMBER)
-                .state(DEFAULT_STATE)
-                .total(DEFAULT_TOTAL)
-                .subTotal(DEFAULT_SUB_TOTAL);
+            .orderNumber(DEFAULT_ORDER_NUMBER)
+            .state(DEFAULT_STATE)
+            .total(DEFAULT_TOTAL)
+            .subTotal(DEFAULT_SUB_TOTAL);
         return order;
     }
 
@@ -120,7 +120,6 @@ public class OrderResourceIntTest {
 
         // Create the Order
         OrderDTO orderDTO = orderMapper.orderToOrderDTO(order);
-
         restOrderMockMvc.perform(post("/api/orders")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
@@ -146,14 +145,13 @@ public class OrderResourceIntTest {
         int databaseSizeBeforeCreate = orderRepository.findAll().size();
 
         // Create the Order with an existing ID
-        Order existingOrder = new Order();
-        existingOrder.setId(1L);
-        OrderDTO existingOrderDTO = orderMapper.orderToOrderDTO(existingOrder);
+        order.setId(1L);
+        OrderDTO orderDTO = orderMapper.orderToOrderDTO(order);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restOrderMockMvc.perform(post("/api/orders")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingOrderDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -214,10 +212,10 @@ public class OrderResourceIntTest {
         // Update the order
         Order updatedOrder = orderRepository.findOne(order.getId());
         updatedOrder
-                .orderNumber(UPDATED_ORDER_NUMBER)
-                .state(UPDATED_STATE)
-                .total(UPDATED_TOTAL)
-                .subTotal(UPDATED_SUB_TOTAL);
+            .orderNumber(UPDATED_ORDER_NUMBER)
+            .state(UPDATED_STATE)
+            .total(UPDATED_TOTAL)
+            .subTotal(UPDATED_SUB_TOTAL);
         OrderDTO orderDTO = orderMapper.orderToOrderDTO(updatedOrder);
 
         restOrderMockMvc.perform(put("/api/orders")
@@ -299,6 +297,7 @@ public class OrderResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Order.class);
     }

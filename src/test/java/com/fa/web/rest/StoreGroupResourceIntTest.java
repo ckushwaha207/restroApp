@@ -93,8 +93,8 @@ public class StoreGroupResourceIntTest {
      */
     public static StoreGroup createEntity(EntityManager em) {
         StoreGroup storeGroup = new StoreGroup()
-                .name(DEFAULT_NAME)
-                .siteUrl(DEFAULT_SITE_URL);
+            .name(DEFAULT_NAME)
+            .siteUrl(DEFAULT_SITE_URL);
         return storeGroup;
     }
 
@@ -111,7 +111,6 @@ public class StoreGroupResourceIntTest {
 
         // Create the StoreGroup
         StoreGroupDTO storeGroupDTO = storeGroupMapper.storeGroupToStoreGroupDTO(storeGroup);
-
         restStoreGroupMockMvc.perform(post("/api/store-groups")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(storeGroupDTO)))
@@ -135,14 +134,13 @@ public class StoreGroupResourceIntTest {
         int databaseSizeBeforeCreate = storeGroupRepository.findAll().size();
 
         // Create the StoreGroup with an existing ID
-        StoreGroup existingStoreGroup = new StoreGroup();
-        existingStoreGroup.setId(1L);
-        StoreGroupDTO existingStoreGroupDTO = storeGroupMapper.storeGroupToStoreGroupDTO(existingStoreGroup);
+        storeGroup.setId(1L);
+        StoreGroupDTO storeGroupDTO = storeGroupMapper.storeGroupToStoreGroupDTO(storeGroup);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restStoreGroupMockMvc.perform(post("/api/store-groups")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingStoreGroupDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(storeGroupDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -218,8 +216,8 @@ public class StoreGroupResourceIntTest {
         // Update the storeGroup
         StoreGroup updatedStoreGroup = storeGroupRepository.findOne(storeGroup.getId());
         updatedStoreGroup
-                .name(UPDATED_NAME)
-                .siteUrl(UPDATED_SITE_URL);
+            .name(UPDATED_NAME)
+            .siteUrl(UPDATED_SITE_URL);
         StoreGroupDTO storeGroupDTO = storeGroupMapper.storeGroupToStoreGroupDTO(updatedStoreGroup);
 
         restStoreGroupMockMvc.perform(put("/api/store-groups")
@@ -297,6 +295,7 @@ public class StoreGroupResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(StoreGroup.class);
     }

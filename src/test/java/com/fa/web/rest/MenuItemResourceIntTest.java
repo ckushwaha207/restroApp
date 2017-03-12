@@ -109,13 +109,13 @@ public class MenuItemResourceIntTest {
      */
     public static MenuItem createEntity(EntityManager em) {
         MenuItem menuItem = new MenuItem()
-                .name(DEFAULT_NAME)
-                .price(DEFAULT_PRICE)
-                .preparationTime(DEFAULT_PREPARATION_TIME)
-                .ingredient(DEFAULT_INGREDIENT)
-                .imageUrl(DEFAULT_IMAGE_URL)
-                .description(DEFAULT_DESCRIPTION)
-                .diet(DEFAULT_DIET);
+            .name(DEFAULT_NAME)
+            .price(DEFAULT_PRICE)
+            .preparationTime(DEFAULT_PREPARATION_TIME)
+            .ingredient(DEFAULT_INGREDIENT)
+            .imageUrl(DEFAULT_IMAGE_URL)
+            .description(DEFAULT_DESCRIPTION)
+            .diet(DEFAULT_DIET);
         return menuItem;
     }
 
@@ -132,7 +132,6 @@ public class MenuItemResourceIntTest {
 
         // Create the MenuItem
         MenuItemDTO menuItemDTO = menuItemMapper.menuItemToMenuItemDTO(menuItem);
-
         restMenuItemMockMvc.perform(post("/api/menu-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(menuItemDTO)))
@@ -161,14 +160,13 @@ public class MenuItemResourceIntTest {
         int databaseSizeBeforeCreate = menuItemRepository.findAll().size();
 
         // Create the MenuItem with an existing ID
-        MenuItem existingMenuItem = new MenuItem();
-        existingMenuItem.setId(1L);
-        MenuItemDTO existingMenuItemDTO = menuItemMapper.menuItemToMenuItemDTO(existingMenuItem);
+        menuItem.setId(1L);
+        MenuItemDTO menuItemDTO = menuItemMapper.menuItemToMenuItemDTO(menuItem);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMenuItemMockMvc.perform(post("/api/menu-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingMenuItemDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(menuItemDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -292,13 +290,13 @@ public class MenuItemResourceIntTest {
         // Update the menuItem
         MenuItem updatedMenuItem = menuItemRepository.findOne(menuItem.getId());
         updatedMenuItem
-                .name(UPDATED_NAME)
-                .price(UPDATED_PRICE)
-                .preparationTime(UPDATED_PREPARATION_TIME)
-                .ingredient(UPDATED_INGREDIENT)
-                .imageUrl(UPDATED_IMAGE_URL)
-                .description(UPDATED_DESCRIPTION)
-                .diet(UPDATED_DIET);
+            .name(UPDATED_NAME)
+            .price(UPDATED_PRICE)
+            .preparationTime(UPDATED_PREPARATION_TIME)
+            .ingredient(UPDATED_INGREDIENT)
+            .imageUrl(UPDATED_IMAGE_URL)
+            .description(UPDATED_DESCRIPTION)
+            .diet(UPDATED_DIET);
         MenuItemDTO menuItemDTO = menuItemMapper.menuItemToMenuItemDTO(updatedMenuItem);
 
         restMenuItemMockMvc.perform(put("/api/menu-items")
@@ -386,6 +384,7 @@ public class MenuItemResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(MenuItem.class);
     }

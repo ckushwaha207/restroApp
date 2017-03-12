@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('LocationController', LocationController);
 
-    LocationController.$inject = ['Location', 'LocationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    LocationController.$inject = ['$state', 'Location', 'LocationSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function LocationController(Location, LocationSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function LocationController($state, Location, LocationSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

@@ -94,8 +94,7 @@ public class CustomerResource {
      */
     @GetMapping("/customers")
     @Timed
-    public ResponseEntity<List<CustomerDTO>> getAllCustomers(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Customers");
         Page<CustomerDTO> page = customerService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/customers");
@@ -141,8 +140,7 @@ public class CustomerResource {
      */
     @GetMapping("/_search/customers")
     @Timed
-    public ResponseEntity<List<CustomerDTO>> searchCustomers(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<CustomerDTO>> searchCustomers(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Customers for query {}", query);
         Page<CustomerDTO> page = customerService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/customers");

@@ -5,9 +5,9 @@
         .module('foodAppetencyApp')
         .controller('PaymentController', PaymentController);
 
-    PaymentController.$inject = ['Payment', 'PaymentSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    PaymentController.$inject = ['$state', 'Payment', 'PaymentSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function PaymentController(Payment, PaymentSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function PaymentController($state, Payment, PaymentSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
