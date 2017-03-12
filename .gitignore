@@ -141,3 +141,5 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+src/test/gatling/bodies/
+src/test/gatling/data/
