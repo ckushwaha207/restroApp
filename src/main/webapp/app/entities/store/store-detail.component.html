@@ -1,0 +1,75 @@
+
+<div *ngIf="store">
+    <h2><span jhiTranslate="foodAppetencyApp.store.detail.title">Store</span> {{store.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.store.code">Code</span></dt>
+        <dd>
+            <span>{{store.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.name">Name</span></dt>
+        <dd>
+            <span>{{store.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.timings">Timings</span></dt>
+        <dd>
+            <span>{{store.timings}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.website">Website</span></dt>
+        <dd>
+            <span>{{store.website}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.email">Email</span></dt>
+        <dd>
+            <span>{{store.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{store.phoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.mobileNumber">Mobile Number</span></dt>
+        <dd>
+            <span>{{store.mobileNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.faxNumber">Fax Number</span></dt>
+        <dd>
+            <span>{{store.faxNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.siteUrl">Site Url</span></dt>
+        <dd>
+            <span>{{store.siteUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.location">Location</span></dt>
+        <dd>
+            <div *ngIf="store.locationId">
+                <a [routerLink]="['/location', store.locationId]">{{store.locationId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.organization">Organization</span></dt>
+        <dd>
+            <div *ngIf="store.organizationId">
+                <a [routerLink]="['/organization', store.organizationId]">{{store.organizationId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.store.storeGroup">Store Group</span></dt>
+        <dd>
+            <div *ngIf="store.storeGroupId">
+                <a [routerLink]="['/store-group', store.storeGroupId]">{{store.storeGroupId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'store/'+ store.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

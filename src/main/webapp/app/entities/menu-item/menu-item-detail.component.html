@@ -1,0 +1,55 @@
+
+<div *ngIf="menuItem">
+    <h2><span jhiTranslate="foodAppetencyApp.menuItem.detail.title">Menu Item</span> {{menuItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.name">Name</span></dt>
+        <dd>
+            <span>{{menuItem.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.price">Price</span></dt>
+        <dd>
+            <span>{{menuItem.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.preparationTime">Preparation Time</span></dt>
+        <dd>
+            <span>{{menuItem.preparationTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.ingredient">Ingredient</span></dt>
+        <dd>
+            <span>{{menuItem.ingredient}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.imageUrl">Image Url</span></dt>
+        <dd>
+            <span>{{menuItem.imageUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.description">Description</span></dt>
+        <dd>
+            <span>{{menuItem.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.diet">Diet</span></dt>
+        <dd>
+            <span jhiTranslate="{{'foodAppetencyApp.Diet.' + menuItem.diet}}">{{menuItem.diet}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuItem.category">Category</span></dt>
+        <dd>
+            <div *ngIf="menuItem.categoryId">
+                <a [routerLink]="['/menu-category', menuItem.categoryId]">{{menuItem.categoryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'menu-item/'+ menuItem.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

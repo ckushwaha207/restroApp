@@ -1,0 +1,31 @@
+
+<div *ngIf="menuCategory">
+    <h2><span jhiTranslate="foodAppetencyApp.menuCategory.detail.title">Menu Category</span> {{menuCategory.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.menuCategory.name">Name</span></dt>
+        <dd>
+            <span>{{menuCategory.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.menuCategory.menu">Menu</span></dt>
+        <dd>
+            <div *ngIf="menuCategory.menuId">
+                <a [routerLink]="['/menu', menuCategory.menuId]">{{menuCategory.menuName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'menu-category/'+ menuCategory.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

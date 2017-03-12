@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span jhiTranslate="foodAppetencyApp.menuItem.home.title">Menu Items</span>
+        <button class="btn btn-primary float-right create-menu-item" [routerLink]="['/', { outlets: { popup: ['menu-item-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="foodAppetencyApp.menuItem.home.createLabel">
+            Create new Menu Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12 no-padding-right">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'foodAppetencyApp.menuItem.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="menuItems">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="foodAppetencyApp.menuItem.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span jhiTranslate="foodAppetencyApp.menuItem.price">Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="preparationTime"><span jhiTranslate="foodAppetencyApp.menuItem.preparationTime">Preparation Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ingredient"><span jhiTranslate="foodAppetencyApp.menuItem.ingredient">Ingredient</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imageUrl"><span jhiTranslate="foodAppetencyApp.menuItem.imageUrl">Image Url</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="foodAppetencyApp.menuItem.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="diet"><span jhiTranslate="foodAppetencyApp.menuItem.diet">Diet</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="categoryName"><span jhiTranslate="foodAppetencyApp.menuItem.category">Category</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let menuItem of menuItems ;trackBy: trackId">
+                <td><a [routerLink]="['../menu-item', menuItem.id ]">{{menuItem.id}}</a></td>
+                <td>{{menuItem.name}}</td>
+                <td>{{menuItem.price}}</td>
+                <td>{{menuItem.preparationTime}}</td>
+                <td>{{menuItem.ingredient}}</td>
+                <td>{{menuItem.imageUrl}}</td>
+                <td>{{menuItem.description}}</td>
+                <td jhiTranslate="{{'foodAppetencyApp.Diet.' + menuItem.diet}}">{{menuItem.diet}}</td>
+                <td>
+                    <div *ngIf="menuItem.categoryId">
+                        <a [routerLink]="['../menu-category', menuItem.categoryId  ]" >{{menuItem.categoryName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../menu-item', menuItem.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'menu-item/'+ menuItem.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'menu-item/'+ menuItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="menuItems && menuItems.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

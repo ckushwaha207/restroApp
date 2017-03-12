@@ -5,7 +5,6 @@
 /build/www/**
 /src/test/javascript/coverage/
 /src/test/javascript/PhantomJS*/
-/src/main/webapp/bower_components/**
 
 ######################
 # Node
@@ -141,5 +140,3 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
-src/test/gatling/bodies/
-src/test/gatling/data/

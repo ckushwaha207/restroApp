@@ -1,0 +1,43 @@
+
+<div *ngIf="payment">
+    <h2><span jhiTranslate="foodAppetencyApp.payment.detail.title">Payment</span> {{payment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.payment.method">Method</span></dt>
+        <dd>
+            <span jhiTranslate="{{'foodAppetencyApp.PaymentMethod.' + payment.method}}">{{payment.method}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.payment.state">State</span></dt>
+        <dd>
+            <span jhiTranslate="{{'foodAppetencyApp.PaymentState.' + payment.state}}">{{payment.state}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.payment.amount">Amount</span></dt>
+        <dd>
+            <span>{{payment.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.payment.authorizedAmount">Authorized Amount</span></dt>
+        <dd>
+            <span>{{payment.authorizedAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.payment.order">Order</span></dt>
+        <dd>
+            <div *ngIf="payment.orderId">
+                <a [routerLink]="['/order', payment.orderId]">{{payment.orderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'payment/'+ payment.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

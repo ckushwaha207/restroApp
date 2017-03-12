@@ -1,0 +1,69 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPaymentLabel" jhiTranslate="foodAppetencyApp.payment.home.createOrEditLabel">Create or edit a Payment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!payment.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="payment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.payment.method" for="field_method">Method</label>
+            <select class="form-control" name="method" [(ngModel)]="payment.method" id="field_method" >
+                <option value="CASH" jhiTranslate="foodAppetencyApp.PaymentMethod.CASH">CASH</option>
+                <option value="CREDIT_CARD" jhiTranslate="foodAppetencyApp.PaymentMethod.CREDIT_CARD">CREDIT_CARD</option>
+                <option value="DEBIT_CARD" jhiTranslate="foodAppetencyApp.PaymentMethod.DEBIT_CARD">DEBIT_CARD</option>
+                <option value="NET_BANKING" jhiTranslate="foodAppetencyApp.PaymentMethod.NET_BANKING">NET_BANKING</option>
+                <option value="MOBILE_BANKING" jhiTranslate="foodAppetencyApp.PaymentMethod.MOBILE_BANKING">MOBILE_BANKING</option>
+                <option value="PAYTM" jhiTranslate="foodAppetencyApp.PaymentMethod.PAYTM">PAYTM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.payment.state" for="field_state">State</label>
+            <select class="form-control" name="state" [(ngModel)]="payment.state" id="field_state" >
+                <option value="INITIAL" jhiTranslate="foodAppetencyApp.PaymentState.INITIAL">INITIAL</option>
+                <option value="AUTHORIZED" jhiTranslate="foodAppetencyApp.PaymentState.AUTHORIZED">AUTHORIZED</option>
+                <option value="AUTHORIZED_FAILED" jhiTranslate="foodAppetencyApp.PaymentState.AUTHORIZED_FAILED">AUTHORIZED_FAILED</option>
+                <option value="CREDIT_FAILED" jhiTranslate="foodAppetencyApp.PaymentState.CREDIT_FAILED">CREDIT_FAILED</option>
+                <option value="REMOVED" jhiTranslate="foodAppetencyApp.PaymentState.REMOVED">REMOVED</option>
+                <option value="SETTLE_FAILED" jhiTranslate="foodAppetencyApp.PaymentState.SETTLE_FAILED">SETTLE_FAILED</option>
+                <option value="SETTLED" jhiTranslate="foodAppetencyApp.PaymentState.SETTLED">SETTLED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.payment.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="payment.amount"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.payment.authorizedAmount" for="field_authorizedAmount">Authorized Amount</label>
+            <input type="number" class="form-control" name="authorizedAmount" id="field_authorizedAmount"
+                [(ngModel)]="payment.authorizedAmount"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="foodAppetencyApp.payment.order" for="field_order">Order</label>
+            <select class="form-control" id="field_order" name="order" [(ngModel)]="payment.orderId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="orderOption.id" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -18,7 +18,7 @@
     "buildTool": "gradle",
     "enableSocialSignIn": true,
     "jwtSecretKey": "cb61bfd5df48bd92dcdea9f9383f581b0d25a792",
-    "clientFramework": "angular1",
+    "clientFramework": "angular2",
     "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",

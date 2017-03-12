@@ -1,0 +1,41 @@
+
+<div *ngIf="order">
+    <h2><span jhiTranslate="foodAppetencyApp.order.detail.title">Order</span> {{order.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.order.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{order.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.order.state">State</span></dt>
+        <dd>
+            <span jhiTranslate="{{'foodAppetencyApp.OrderState.' + order.state}}">{{order.state}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.order.total">Total</span></dt>
+        <dd>
+            <span>{{order.total}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.order.subTotal">Sub Total</span></dt>
+        <dd>
+            <span>{{order.subTotal}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.order.profile">Profile</span></dt>
+        <dd>
+            {{order.profileLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'order/'+ order.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

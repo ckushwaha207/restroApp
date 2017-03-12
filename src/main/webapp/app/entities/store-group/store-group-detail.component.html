@@ -1,0 +1,35 @@
+
+<div *ngIf="storeGroup">
+    <h2><span jhiTranslate="foodAppetencyApp.storeGroup.detail.title">Store Group</span> {{storeGroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.storeGroup.name">Name</span></dt>
+        <dd>
+            <span>{{storeGroup.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.storeGroup.siteUrl">Site Url</span></dt>
+        <dd>
+            <span>{{storeGroup.siteUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.storeGroup.organization">Organization</span></dt>
+        <dd>
+            <div *ngIf="storeGroup.organizationId">
+                <a [routerLink]="['/organization', storeGroup.organizationId]">{{storeGroup.organizationId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'store-group/'+ storeGroup.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

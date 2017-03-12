@@ -1,0 +1,35 @@
+
+<div *ngIf="diningTable">
+    <h2><span jhiTranslate="foodAppetencyApp.diningTable.detail.title">Dining Table</span> {{diningTable.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.diningTable.number">Number</span></dt>
+        <dd>
+            <span>{{diningTable.number}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.diningTable.code">Code</span></dt>
+        <dd>
+            <span>{{diningTable.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.diningTable.store">Store</span></dt>
+        <dd>
+            <div *ngIf="diningTable.storeId">
+                <a [routerLink]="['/store', diningTable.storeId]">{{diningTable.storeId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'dining-table/'+ diningTable.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

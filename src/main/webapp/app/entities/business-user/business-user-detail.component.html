@@ -1,0 +1,37 @@
+
+<div *ngIf="businessUser">
+    <h2><span jhiTranslate="foodAppetencyApp.businessUser.detail.title">Business User</span> {{businessUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.businessUser.user">User</span></dt>
+        <dd>
+            {{businessUser.userId}}
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.businessUser.storeGroup">Store Group</span></dt>
+        <dd>
+            <div *ngIf="businessUser.storeGroupId">
+                <a [routerLink]="['/store-group', businessUser.storeGroupId]">{{businessUser.storeGroupId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.businessUser.store">Store</span></dt>
+        <dd>
+            <div *ngIf="businessUser.storeId">
+                <a [routerLink]="['/store', businessUser.storeId]">{{businessUser.storeName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'business-user/'+ businessUser.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

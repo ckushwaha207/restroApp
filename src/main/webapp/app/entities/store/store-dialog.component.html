@@ -1,0 +1,114 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myStoreLabel" jhiTranslate="foodAppetencyApp.store.home.createOrEditLabel">Create or edit a Store</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!store.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="store.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.code" for="field_code">Code</label>
+            <input type="text" class="form-control" name="code" id="field_code"
+                [(ngModel)]="store.code"
+            required />
+            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="store.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.timings" for="field_timings">Timings</label>
+            <input type="text" class="form-control" name="timings" id="field_timings"
+                [(ngModel)]="store.timings"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.website" for="field_website">Website</label>
+            <input type="text" class="form-control" name="website" id="field_website"
+                [(ngModel)]="store.website"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="store.email"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.phoneNumber" for="field_phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                [(ngModel)]="store.phoneNumber"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.mobileNumber" for="field_mobileNumber">Mobile Number</label>
+            <input type="text" class="form-control" name="mobileNumber" id="field_mobileNumber"
+                [(ngModel)]="store.mobileNumber"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.faxNumber" for="field_faxNumber">Fax Number</label>
+            <input type="text" class="form-control" name="faxNumber" id="field_faxNumber"
+                [(ngModel)]="store.faxNumber"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.store.siteUrl" for="field_siteUrl">Site Url</label>
+            <input type="text" class="form-control" name="siteUrl" id="field_siteUrl"
+                [(ngModel)]="store.siteUrl"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="foodAppetencyApp.store.location" for="field_location">Location</label>
+            <select class="form-control" id="field_location" name="location" [(ngModel)]="store.locationId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="locationOption.id" *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="foodAppetencyApp.store.organization" for="field_organization">Organization</label>
+            <select class="form-control" id="field_organization" name="organization" [(ngModel)]="store.organizationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="organizationOption.id" *ngFor="let organizationOption of organizations; trackBy: trackOrganizationById">{{organizationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="foodAppetencyApp.store.storeGroup" for="field_storeGroup">Store Group</label>
+            <select class="form-control" id="field_storeGroup" name="storeGroup" [(ngModel)]="store.storeGroupId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="storeGroupOption.id" *ngFor="let storeGroupOption of storegroups; trackBy: trackStoreGroupById">{{storeGroupOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

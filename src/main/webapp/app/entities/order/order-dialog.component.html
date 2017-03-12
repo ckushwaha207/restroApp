@@ -1,0 +1,68 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOrderLabel" jhiTranslate="foodAppetencyApp.order.home.createOrEditLabel">Create or edit a Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!order.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="order.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.order.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="order.orderNumber"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.order.state" for="field_state">State</label>
+            <select class="form-control" name="state" [(ngModel)]="order.state" id="field_state" >
+                <option value="SUBMITTED" jhiTranslate="foodAppetencyApp.OrderState.SUBMITTED">SUBMITTED</option>
+                <option value="FAILED" jhiTranslate="foodAppetencyApp.OrderState.FAILED">FAILED</option>
+                <option value="APPROVED" jhiTranslate="foodAppetencyApp.OrderState.APPROVED">APPROVED</option>
+                <option value="PROCESSING" jhiTranslate="foodAppetencyApp.OrderState.PROCESSING">PROCESSING</option>
+                <option value="PROCESSED" jhiTranslate="foodAppetencyApp.OrderState.PROCESSED">PROCESSED</option>
+                <option value="AMENDED" jhiTranslate="foodAppetencyApp.OrderState.AMENDED">AMENDED</option>
+                <option value="FAILED_APPROVAL" jhiTranslate="foodAppetencyApp.OrderState.FAILED_APPROVAL">FAILED_APPROVAL</option>
+                <option value="FAILED_AMENDMENT" jhiTranslate="foodAppetencyApp.OrderState.FAILED_AMENDMENT">FAILED_AMENDMENT</option>
+                <option value="PENDING_CUSTOMER_ACTION" jhiTranslate="foodAppetencyApp.OrderState.PENDING_CUSTOMER_ACTION">PENDING_CUSTOMER_ACTION</option>
+                <option value="PENDING_MERCHANT_ACTION" jhiTranslate="foodAppetencyApp.OrderState.PENDING_MERCHANT_ACTION">PENDING_MERCHANT_ACTION</option>
+                <option value="NO_PENDING_ACTION" jhiTranslate="foodAppetencyApp.OrderState.NO_PENDING_ACTION">NO_PENDING_ACTION</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.order.total" for="field_total">Total</label>
+            <input type="number" class="form-control" name="total" id="field_total"
+                [(ngModel)]="order.total"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="foodAppetencyApp.order.subTotal" for="field_subTotal">Sub Total</label>
+            <input type="number" class="form-control" name="subTotal" id="field_subTotal"
+                [(ngModel)]="order.subTotal"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="foodAppetencyApp.order.profile" for="field_profile">Profile</label>
+            <select class="form-control" id="field_profile" name="profile" [(ngModel)]="order.profileId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

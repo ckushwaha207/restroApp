@@ -1,0 +1,37 @@
+
+<div *ngIf="tableQR">
+    <h2><span jhiTranslate="foodAppetencyApp.tableQR.detail.title">Table QR</span> {{tableQR.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="foodAppetencyApp.tableQR.code">Code</span></dt>
+        <dd>
+            <span>{{tableQR.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.tableQR.table">Table</span></dt>
+        <dd>
+            <div *ngIf="tableQR.tableId">
+                <a [routerLink]="['/dining-table', tableQR.tableId]">{{tableQR.tableCode}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="foodAppetencyApp.tableQR.store">Store</span></dt>
+        <dd>
+            <div *ngIf="tableQR.storeId">
+                <a [routerLink]="['/store', tableQR.storeId]">{{tableQR.storeCode}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'table-qr/'+ tableQR.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
