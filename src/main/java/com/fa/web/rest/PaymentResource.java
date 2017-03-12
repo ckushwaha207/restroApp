@@ -94,8 +94,7 @@ public class PaymentResource {
      */
     @GetMapping("/payments")
     @Timed
-    public ResponseEntity<List<PaymentDTO>> getAllPayments(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<PaymentDTO>> getAllPayments(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Payments");
         Page<PaymentDTO> page = paymentService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/payments");
@@ -141,8 +140,7 @@ public class PaymentResource {
      */
     @GetMapping("/_search/payments")
     @Timed
-    public ResponseEntity<List<PaymentDTO>> searchPayments(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<PaymentDTO>> searchPayments(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Payments for query {}", query);
         Page<PaymentDTO> page = paymentService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/payments");

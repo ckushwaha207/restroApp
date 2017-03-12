@@ -90,7 +90,7 @@ public class TableQRResourceIntTest {
      */
     public static TableQR createEntity(EntityManager em) {
         TableQR tableQR = new TableQR()
-                .code(DEFAULT_CODE);
+            .code(DEFAULT_CODE);
         return tableQR;
     }
 
@@ -107,7 +107,6 @@ public class TableQRResourceIntTest {
 
         // Create the TableQR
         TableQRDTO tableQRDTO = tableQRMapper.tableQRToTableQRDTO(tableQR);
-
         restTableQRMockMvc.perform(post("/api/table-qrs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(tableQRDTO)))
@@ -130,14 +129,13 @@ public class TableQRResourceIntTest {
         int databaseSizeBeforeCreate = tableQRRepository.findAll().size();
 
         // Create the TableQR with an existing ID
-        TableQR existingTableQR = new TableQR();
-        existingTableQR.setId(1L);
-        TableQRDTO existingTableQRDTO = tableQRMapper.tableQRToTableQRDTO(existingTableQR);
+        tableQR.setId(1L);
+        TableQRDTO tableQRDTO = tableQRMapper.tableQRToTableQRDTO(tableQR);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTableQRMockMvc.perform(post("/api/table-qrs")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingTableQRDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(tableQRDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -211,7 +209,7 @@ public class TableQRResourceIntTest {
         // Update the tableQR
         TableQR updatedTableQR = tableQRRepository.findOne(tableQR.getId());
         updatedTableQR
-                .code(UPDATED_CODE);
+            .code(UPDATED_CODE);
         TableQRDTO tableQRDTO = tableQRMapper.tableQRToTableQRDTO(updatedTableQR);
 
         restTableQRMockMvc.perform(put("/api/table-qrs")
@@ -287,6 +285,7 @@ public class TableQRResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(TableQR.class);
     }

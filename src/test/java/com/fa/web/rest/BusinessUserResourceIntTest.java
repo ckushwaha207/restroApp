@@ -103,7 +103,6 @@ public class BusinessUserResourceIntTest {
 
         // Create the BusinessUser
         BusinessUserDTO businessUserDTO = businessUserMapper.businessUserToBusinessUserDTO(businessUser);
-
         restBusinessUserMockMvc.perform(post("/api/business-users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(businessUserDTO)))
@@ -125,14 +124,13 @@ public class BusinessUserResourceIntTest {
         int databaseSizeBeforeCreate = businessUserRepository.findAll().size();
 
         // Create the BusinessUser with an existing ID
-        BusinessUser existingBusinessUser = new BusinessUser();
-        existingBusinessUser.setId(1L);
-        BusinessUserDTO existingBusinessUserDTO = businessUserMapper.businessUserToBusinessUserDTO(existingBusinessUser);
+        businessUser.setId(1L);
+        BusinessUserDTO businessUserDTO = businessUserMapper.businessUserToBusinessUserDTO(businessUser);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restBusinessUserMockMvc.perform(post("/api/business-users")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingBusinessUserDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(businessUserDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -257,6 +255,7 @@ public class BusinessUserResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(BusinessUser.class);
     }

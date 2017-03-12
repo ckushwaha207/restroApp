@@ -95,8 +95,7 @@ public class TableQRResource {
      */
     @GetMapping("/table-qrs")
     @Timed
-    public ResponseEntity<List<TableQRDTO>> getAllTableQRS(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<TableQRDTO>> getAllTableQRS(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of TableQRS");
         Page<TableQRDTO> page = tableQRService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/table-qrs");
@@ -142,8 +141,7 @@ public class TableQRResource {
      */
     @GetMapping("/_search/table-qrs")
     @Timed
-    public ResponseEntity<List<TableQRDTO>> searchTableQRS(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<TableQRDTO>> searchTableQRS(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of TableQRS for query {}", query);
         Page<TableQRDTO> page = tableQRService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/table-qrs");

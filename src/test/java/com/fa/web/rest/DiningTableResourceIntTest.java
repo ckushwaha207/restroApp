@@ -93,8 +93,8 @@ public class DiningTableResourceIntTest {
      */
     public static DiningTable createEntity(EntityManager em) {
         DiningTable diningTable = new DiningTable()
-                .number(DEFAULT_NUMBER)
-                .code(DEFAULT_CODE);
+            .number(DEFAULT_NUMBER)
+            .code(DEFAULT_CODE);
         return diningTable;
     }
 
@@ -111,7 +111,6 @@ public class DiningTableResourceIntTest {
 
         // Create the DiningTable
         DiningTableDTO diningTableDTO = diningTableMapper.diningTableToDiningTableDTO(diningTable);
-
         restDiningTableMockMvc.perform(post("/api/dining-tables")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(diningTableDTO)))
@@ -135,14 +134,13 @@ public class DiningTableResourceIntTest {
         int databaseSizeBeforeCreate = diningTableRepository.findAll().size();
 
         // Create the DiningTable with an existing ID
-        DiningTable existingDiningTable = new DiningTable();
-        existingDiningTable.setId(1L);
-        DiningTableDTO existingDiningTableDTO = diningTableMapper.diningTableToDiningTableDTO(existingDiningTable);
+        diningTable.setId(1L);
+        DiningTableDTO diningTableDTO = diningTableMapper.diningTableToDiningTableDTO(diningTable);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restDiningTableMockMvc.perform(post("/api/dining-tables")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingDiningTableDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(diningTableDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -237,8 +235,8 @@ public class DiningTableResourceIntTest {
         // Update the diningTable
         DiningTable updatedDiningTable = diningTableRepository.findOne(diningTable.getId());
         updatedDiningTable
-                .number(UPDATED_NUMBER)
-                .code(UPDATED_CODE);
+            .number(UPDATED_NUMBER)
+            .code(UPDATED_CODE);
         DiningTableDTO diningTableDTO = diningTableMapper.diningTableToDiningTableDTO(updatedDiningTable);
 
         restDiningTableMockMvc.perform(put("/api/dining-tables")
@@ -316,6 +314,7 @@ public class DiningTableResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(DiningTable.class);
     }

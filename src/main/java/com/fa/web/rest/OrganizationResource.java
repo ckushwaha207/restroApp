@@ -95,8 +95,7 @@ public class OrganizationResource {
      */
     @GetMapping("/organizations")
     @Timed
-    public ResponseEntity<List<OrganizationDTO>> getAllOrganizations(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<OrganizationDTO>> getAllOrganizations(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Organizations");
         Page<OrganizationDTO> page = organizationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/organizations");
@@ -142,8 +141,7 @@ public class OrganizationResource {
      */
     @GetMapping("/_search/organizations")
     @Timed
-    public ResponseEntity<List<OrganizationDTO>> searchOrganizations(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<OrganizationDTO>> searchOrganizations(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Organizations for query {}", query);
         Page<OrganizationDTO> page = organizationService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/organizations");

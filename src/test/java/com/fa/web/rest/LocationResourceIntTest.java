@@ -111,14 +111,14 @@ public class LocationResourceIntTest {
      */
     public static Location createEntity(EntityManager em) {
         Location location = new Location()
-                .address1(DEFAULT_ADDRESS_1)
-                .address2(DEFAULT_ADDRESS_2)
-                .address3(DEFAULT_ADDRESS_3)
-                .city(DEFAULT_CITY)
-                .state(DEFAULT_STATE)
-                .country(DEFAULT_COUNTRY)
-                .latitude(DEFAULT_LATITUDE)
-                .longitude(DEFAULT_LONGITUDE);
+            .address1(DEFAULT_ADDRESS_1)
+            .address2(DEFAULT_ADDRESS_2)
+            .address3(DEFAULT_ADDRESS_3)
+            .city(DEFAULT_CITY)
+            .state(DEFAULT_STATE)
+            .country(DEFAULT_COUNTRY)
+            .latitude(DEFAULT_LATITUDE)
+            .longitude(DEFAULT_LONGITUDE);
         return location;
     }
 
@@ -135,7 +135,6 @@ public class LocationResourceIntTest {
 
         // Create the Location
         LocationDTO locationDTO = locationMapper.locationToLocationDTO(location);
-
         restLocationMockMvc.perform(post("/api/locations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(locationDTO)))
@@ -165,14 +164,13 @@ public class LocationResourceIntTest {
         int databaseSizeBeforeCreate = locationRepository.findAll().size();
 
         // Create the Location with an existing ID
-        Location existingLocation = new Location();
-        existingLocation.setId(1L);
-        LocationDTO existingLocationDTO = locationMapper.locationToLocationDTO(existingLocation);
+        location.setId(1L);
+        LocationDTO locationDTO = locationMapper.locationToLocationDTO(location);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restLocationMockMvc.perform(post("/api/locations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingLocationDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(locationDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -279,14 +277,14 @@ public class LocationResourceIntTest {
         // Update the location
         Location updatedLocation = locationRepository.findOne(location.getId());
         updatedLocation
-                .address1(UPDATED_ADDRESS_1)
-                .address2(UPDATED_ADDRESS_2)
-                .address3(UPDATED_ADDRESS_3)
-                .city(UPDATED_CITY)
-                .state(UPDATED_STATE)
-                .country(UPDATED_COUNTRY)
-                .latitude(UPDATED_LATITUDE)
-                .longitude(UPDATED_LONGITUDE);
+            .address1(UPDATED_ADDRESS_1)
+            .address2(UPDATED_ADDRESS_2)
+            .address3(UPDATED_ADDRESS_3)
+            .city(UPDATED_CITY)
+            .state(UPDATED_STATE)
+            .country(UPDATED_COUNTRY)
+            .latitude(UPDATED_LATITUDE)
+            .longitude(UPDATED_LONGITUDE);
         LocationDTO locationDTO = locationMapper.locationToLocationDTO(updatedLocation);
 
         restLocationMockMvc.perform(put("/api/locations")
@@ -376,6 +374,7 @@ public class LocationResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Location.class);
     }

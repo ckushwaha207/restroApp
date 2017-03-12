@@ -93,8 +93,8 @@ public class OrganizationResourceIntTest {
      */
     public static Organization createEntity(EntityManager em) {
         Organization organization = new Organization()
-                .name(DEFAULT_NAME)
-                .owner(DEFAULT_OWNER);
+            .name(DEFAULT_NAME)
+            .owner(DEFAULT_OWNER);
         return organization;
     }
 
@@ -111,7 +111,6 @@ public class OrganizationResourceIntTest {
 
         // Create the Organization
         OrganizationDTO organizationDTO = organizationMapper.organizationToOrganizationDTO(organization);
-
         restOrganizationMockMvc.perform(post("/api/organizations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(organizationDTO)))
@@ -135,14 +134,13 @@ public class OrganizationResourceIntTest {
         int databaseSizeBeforeCreate = organizationRepository.findAll().size();
 
         // Create the Organization with an existing ID
-        Organization existingOrganization = new Organization();
-        existingOrganization.setId(1L);
-        OrganizationDTO existingOrganizationDTO = organizationMapper.organizationToOrganizationDTO(existingOrganization);
+        organization.setId(1L);
+        OrganizationDTO organizationDTO = organizationMapper.organizationToOrganizationDTO(organization);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restOrganizationMockMvc.perform(post("/api/organizations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingOrganizationDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(organizationDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -218,8 +216,8 @@ public class OrganizationResourceIntTest {
         // Update the organization
         Organization updatedOrganization = organizationRepository.findOne(organization.getId());
         updatedOrganization
-                .name(UPDATED_NAME)
-                .owner(UPDATED_OWNER);
+            .name(UPDATED_NAME)
+            .owner(UPDATED_OWNER);
         OrganizationDTO organizationDTO = organizationMapper.organizationToOrganizationDTO(updatedOrganization);
 
         restOrganizationMockMvc.perform(put("/api/organizations")
@@ -297,6 +295,7 @@ public class OrganizationResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Organization.class);
     }

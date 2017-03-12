@@ -95,8 +95,7 @@ public class MenuResource {
      */
     @GetMapping("/menus")
     @Timed
-    public ResponseEntity<List<MenuDTO>> getAllMenus(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<MenuDTO>> getAllMenus(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Menus");
         Page<MenuDTO> page = menuService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/menus");
@@ -142,8 +141,7 @@ public class MenuResource {
      */
     @GetMapping("/_search/menus")
     @Timed
-    public ResponseEntity<List<MenuDTO>> searchMenus(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<MenuDTO>> searchMenus(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Menus for query {}", query);
         Page<MenuDTO> page = menuService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/menus");

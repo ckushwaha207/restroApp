@@ -96,8 +96,7 @@ public class StoreGroupResource {
      */
     @GetMapping("/store-groups")
     @Timed
-    public ResponseEntity<List<StoreGroupDTO>> getAllStoreGroups(@ApiParam Pageable pageable, @RequestParam(required = false) String filter)
-        throws URISyntaxException {
+    public ResponseEntity<List<StoreGroupDTO>> getAllStoreGroups(@ApiParam Pageable pageable, @RequestParam(required = false) String filter) {
         if ("user-is-null".equals(filter)) {
             log.debug("REST request to get all StoreGroups where user is null");
             return new ResponseEntity<>(storeGroupService.findAllWhereUserIsNull(),
@@ -148,8 +147,7 @@ public class StoreGroupResource {
      */
     @GetMapping("/_search/store-groups")
     @Timed
-    public ResponseEntity<List<StoreGroupDTO>> searchStoreGroups(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<StoreGroupDTO>> searchStoreGroups(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of StoreGroups for query {}", query);
         Page<StoreGroupDTO> page = storeGroupService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/store-groups");

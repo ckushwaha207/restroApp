@@ -114,15 +114,15 @@ public class StoreResourceIntTest {
      */
     public static Store createEntity(EntityManager em) {
         Store store = new Store()
-                .code(DEFAULT_CODE)
-                .name(DEFAULT_NAME)
-                .timings(DEFAULT_TIMINGS)
-                .website(DEFAULT_WEBSITE)
-                .email(DEFAULT_EMAIL)
-                .phoneNumber(DEFAULT_PHONE_NUMBER)
-                .mobileNumber(DEFAULT_MOBILE_NUMBER)
-                .faxNumber(DEFAULT_FAX_NUMBER)
-                .siteUrl(DEFAULT_SITE_URL);
+            .code(DEFAULT_CODE)
+            .name(DEFAULT_NAME)
+            .timings(DEFAULT_TIMINGS)
+            .website(DEFAULT_WEBSITE)
+            .email(DEFAULT_EMAIL)
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .mobileNumber(DEFAULT_MOBILE_NUMBER)
+            .faxNumber(DEFAULT_FAX_NUMBER)
+            .siteUrl(DEFAULT_SITE_URL);
         return store;
     }
 
@@ -139,7 +139,6 @@ public class StoreResourceIntTest {
 
         // Create the Store
         StoreDTO storeDTO = storeMapper.storeToStoreDTO(store);
-
         restStoreMockMvc.perform(post("/api/stores")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(storeDTO)))
@@ -170,14 +169,13 @@ public class StoreResourceIntTest {
         int databaseSizeBeforeCreate = storeRepository.findAll().size();
 
         // Create the Store with an existing ID
-        Store existingStore = new Store();
-        existingStore.setId(1L);
-        StoreDTO existingStoreDTO = storeMapper.storeToStoreDTO(existingStore);
+        store.setId(1L);
+        StoreDTO storeDTO = storeMapper.storeToStoreDTO(store);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restStoreMockMvc.perform(post("/api/stores")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingStoreDTO)))
+            .content(TestUtil.convertObjectToJsonBytes(storeDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -286,15 +284,15 @@ public class StoreResourceIntTest {
         // Update the store
         Store updatedStore = storeRepository.findOne(store.getId());
         updatedStore
-                .code(UPDATED_CODE)
-                .name(UPDATED_NAME)
-                .timings(UPDATED_TIMINGS)
-                .website(UPDATED_WEBSITE)
-                .email(UPDATED_EMAIL)
-                .phoneNumber(UPDATED_PHONE_NUMBER)
-                .mobileNumber(UPDATED_MOBILE_NUMBER)
-                .faxNumber(UPDATED_FAX_NUMBER)
-                .siteUrl(UPDATED_SITE_URL);
+            .code(UPDATED_CODE)
+            .name(UPDATED_NAME)
+            .timings(UPDATED_TIMINGS)
+            .website(UPDATED_WEBSITE)
+            .email(UPDATED_EMAIL)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .mobileNumber(UPDATED_MOBILE_NUMBER)
+            .faxNumber(UPDATED_FAX_NUMBER)
+            .siteUrl(UPDATED_SITE_URL);
         StoreDTO storeDTO = storeMapper.storeToStoreDTO(updatedStore);
 
         restStoreMockMvc.perform(put("/api/stores")
@@ -386,6 +384,7 @@ public class StoreResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Store.class);
     }
