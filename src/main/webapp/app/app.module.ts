@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 import { FoodAppetencySharedModule, UserRouteAccessService } from './shared';
 import { FoodAppetencyHomeModule } from './home/home.module';
@@ -31,6 +33,7 @@ import {
         BrowserModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        MaterialModule.forRoot(),
         FoodAppetencySharedModule,
         FoodAppetencyHomeModule,
         FoodAppetencyAdminModule,
