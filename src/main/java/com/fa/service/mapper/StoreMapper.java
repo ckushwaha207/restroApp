@@ -26,7 +26,7 @@ public interface StoreMapper {
     @Mapping(source = "locationId", target = "location")
     @Mapping(target = "tables", ignore = true)
     @Mapping(source = "organizationId", target = "organization")
-    @Mapping(source = "storeGroupId", target = "storeGroup")
+    @Mapping(target = "storeGroup", ignore = true)
     @Mapping(target = "menus", ignore = true)
     Store storeDTOToStore(StoreDTO storeDTO);
 

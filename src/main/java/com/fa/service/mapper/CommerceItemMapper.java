@@ -17,8 +17,6 @@ public interface CommerceItemMapper {
     @Mapping(source = "order.id", target = "orderId")
     CommerceItemDTO commerceItemToCommerceItemDTO(CommerceItem commerceItem);
 
-    List<CommerceItemDTO> commerceItemsToCommerceItemDTOs(List<CommerceItem> commerceItems);
-
     @Mapping(source = "productId", target = "product")
     @Mapping(source = "orderId", target = "order")
     CommerceItem commerceItemDTOToCommerceItem(CommerceItemDTO commerceItemDTO);
@@ -31,7 +29,7 @@ public interface CommerceItemMapper {
      * @param id id of the entity
      * @return the entity instance
      */
-     
+
     default CommerceItem commerceItemFromId(Long id) {
         if (id == null) {
             return null;
@@ -40,6 +38,4 @@ public interface CommerceItemMapper {
         commerceItem.setId(id);
         return commerceItem;
     }
-    
-
 }

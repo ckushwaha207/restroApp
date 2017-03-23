@@ -16,8 +16,6 @@ public interface MenuItemMapper {
     @Mapping(source = "category.name", target = "categoryName")
     MenuItemDTO menuItemToMenuItemDTO(MenuItem menuItem);
 
-    List<MenuItemDTO> menuItemsToMenuItemDTOs(List<MenuItem> menuItems);
-
     @Mapping(source = "categoryId", target = "category")
     MenuItem menuItemDTOToMenuItem(MenuItemDTO menuItemDTO);
 
@@ -29,7 +27,7 @@ public interface MenuItemMapper {
      * @param id id of the entity
      * @return the entity instance
      */
-     
+
     default MenuItem menuItemFromId(Long id) {
         if (id == null) {
             return null;
@@ -38,6 +36,4 @@ public interface MenuItemMapper {
         menuItem.setId(id);
         return menuItem;
     }
-    
-
 }

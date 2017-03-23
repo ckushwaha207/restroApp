@@ -18,8 +18,6 @@ public interface MenuMapper {
     @Mapping(source = "store.id", target = "storeId")
     MenuDTO menuToMenuDTO(Menu menu);
 
-    List<MenuDTO> menusToMenuDTOs(List<Menu> menus);
-
     @Mapping(target = "categories", ignore = true)
     @Mapping(source = "storeId", target = "store")
     Menu menuDTOToMenu(MenuDTO menuDTO);
@@ -42,24 +40,4 @@ public interface MenuMapper {
         menu.setId(id);
         return menu;
     }
-
-    // mapping for menu-categories
-
-    @Mappings({
-        @Mapping(target = "menuId", source = "menu.id"),
-        @Mapping(target = "menuName", source = "menu.name"),
-    })
-    MenuCategoryDTO menuCategoryToMenuCategoryDTO(MenuCategory menuCategory);
-
-    List<MenuCategoryDTO> menuCategoriesToMenuCategoryDTOs(Set<MenuCategory> menuCategories);
-
-    // mapping for menu-items
-
-    @Mappings({
-        @Mapping(target = "categoryId", source = "category.id"),
-        @Mapping(target = "categoryName", source = "category.name")
-    })
-    MenuItemDTO menuItemToMenuItemDTO(MenuItem menuItem);
-
-    List<MenuItemDTO> menuItemsToMenuItemDTOs(Set<MenuItem> menuItems);
 }

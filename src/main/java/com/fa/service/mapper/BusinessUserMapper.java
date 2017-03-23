@@ -21,7 +21,7 @@ public interface BusinessUserMapper {
     List<BusinessUserDTO> businessUsersToBusinessUserDTOs(List<BusinessUser> businessUsers);
 
     @Mapping(source = "userId", target = "user")
-    @Mapping(source = "storeGroupId", target = "storeGroup")
+    @Mapping(target = "storeGroup", ignore = true)
     @Mapping(source = "storeId", target = "store")
     BusinessUser businessUserDTOToBusinessUser(BusinessUserDTO businessUserDTO);
 
@@ -33,7 +33,7 @@ public interface BusinessUserMapper {
      * @param id id of the entity
      * @return the entity instance
      */
-     
+
     default BusinessUser businessUserFromId(Long id) {
         if (id == null) {
             return null;
@@ -42,6 +42,4 @@ public interface BusinessUserMapper {
         businessUser.setId(id);
         return businessUser;
     }
-    
-
 }
