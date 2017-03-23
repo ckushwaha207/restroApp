@@ -91,7 +91,6 @@ public class TableQRResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of tableQRS in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/table-qrs")
     @Timed
@@ -137,7 +136,6 @@ public class TableQRResource {
      * @param query the query of the tableQR search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/table-qrs")
     @Timed

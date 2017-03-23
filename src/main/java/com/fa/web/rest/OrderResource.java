@@ -90,7 +90,6 @@ public class OrderResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of orders in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/orders")
     @Timed
@@ -136,7 +135,6 @@ public class OrderResource {
      * @param query the query of the order search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/orders")
     @Timed

@@ -92,7 +92,6 @@ public class StoreGroupResource {
      * @param pageable the pagination information
      * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of storeGroups in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/store-groups")
     @Timed
@@ -143,7 +142,6 @@ public class StoreGroupResource {
      * @param query the query of the storeGroup search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/store-groups")
     @Timed

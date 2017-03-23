@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity DiningTable and its DTO DiningTableDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {StoreMapper.class, })
 public interface DiningTableMapper {
 
     @Mapping(source = "store.id", target = "storeId")
@@ -21,13 +21,22 @@ public interface DiningTableMapper {
     DiningTable diningTableDTOToDiningTable(DiningTableDTO diningTableDTO);
 
     List<DiningTable> diningTableDTOsToDiningTables(List<DiningTableDTO> diningTableDTOs);
-
-    default Store storeFromId(Long id) {
+    /**
+     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
+     * creating a new attribute to know if the entity has any relationship from some other entity
+     *
+     * @param id id of the entity
+     * @return the entity instance
+     */
+     
+    default DiningTable diningTableFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Store store = new Store();
-        store.setId(id);
-        return store;
+        DiningTable diningTable = new DiningTable();
+        diningTable.setId(id);
+        return diningTable;
     }
+    
+
 }

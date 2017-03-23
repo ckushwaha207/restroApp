@@ -91,7 +91,6 @@ public class TransactionStatusResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of transactionStatuses in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/transaction-statuses")
     @Timed
@@ -137,7 +136,6 @@ public class TransactionStatusResource {
      * @param query the query of the transactionStatus search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/transaction-statuses")
     @Timed
