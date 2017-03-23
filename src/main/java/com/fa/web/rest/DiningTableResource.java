@@ -91,7 +91,6 @@ public class DiningTableResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of diningTables in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/dining-tables")
     @Timed
@@ -137,7 +136,6 @@ public class DiningTableResource {
      * @param query the query of the diningTable search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/dining-tables")
     @Timed

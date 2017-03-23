@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Mapper for the entity Store and its DTO StoreDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {LocationMapper.class, OrganizationMapper.class, StoreGroupMapper.class, })
 @DecoratedWith(StoreMapperDecorator.class)
 public interface StoreMapper {
 
@@ -31,23 +31,21 @@ public interface StoreMapper {
     Store storeDTOToStore(StoreDTO storeDTO);
 
     List<Store> storeDTOsToStores(List<StoreDTO> storeDTOs);
+    /**
+     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
+     * creating a new attribute to know if the entity has any relationship from some other entity
+     *
+     * @param id id of the entity
+     * @return the entity instance
+     */
 
-    default Location locationFromId(Long id) {
+    default Store storeFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Location location = new Location();
-        location.setId(id);
-        return location;
-    }
-
-    default Organization organizationFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        Organization organization = new Organization();
-        organization.setId(id);
-        return organization;
+        Store store = new Store();
+        store.setId(id);
+        return store;
     }
 
     default StoreGroup storeGroupFromId(Long id) {

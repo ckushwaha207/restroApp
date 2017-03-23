@@ -90,7 +90,6 @@ public class CustomerResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of customers in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/customers")
     @Timed
@@ -136,7 +135,6 @@ public class CustomerResource {
      * @param query the query of the customer search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/customers")
     @Timed

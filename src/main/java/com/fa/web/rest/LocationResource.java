@@ -91,7 +91,6 @@ public class LocationResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of locations in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/locations")
     @Timed
@@ -137,7 +136,6 @@ public class LocationResource {
      * @param query the query of the location search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/locations")
     @Timed

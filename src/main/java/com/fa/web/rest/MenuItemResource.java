@@ -91,7 +91,6 @@ public class MenuItemResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of menuItems in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/menu-items")
     @Timed
@@ -137,7 +136,6 @@ public class MenuItemResource {
      * @param query the query of the menuItem search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/menu-items")
     @Timed

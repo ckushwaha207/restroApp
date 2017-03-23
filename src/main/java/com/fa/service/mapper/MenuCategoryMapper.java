@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Mapper for the entity MenuCategory and its DTO MenuCategoryDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {MenuMapper.class, })
 public interface MenuCategoryMapper {
 
     @Mapping(source = "menu.id", target = "menuId")
@@ -25,14 +25,21 @@ public interface MenuCategoryMapper {
     MenuCategory menuCategoryDTOToMenuCategory(MenuCategoryDTO menuCategoryDTO);
 
     List<MenuCategory> menuCategoryDTOsToMenuCategories(List<MenuCategoryDTO> menuCategoryDTOs);
+    /**
+     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
+     * creating a new attribute to know if the entity has any relationship from some other entity
+     *
+     * @param id id of the entity
+     * @return the entity instance
+     */
 
-    default Menu menuFromId(Long id) {
+    default MenuCategory menuCategoryFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Menu menu = new Menu();
-        menu.setId(id);
-        return menu;
+        MenuCategory menuCategory = new MenuCategory();
+        menuCategory.setId(id);
+        return menuCategory;
     }
 
     // mapping for menu-items

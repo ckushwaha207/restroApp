@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity BusinessUser and its DTO BusinessUserDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class, })
+@Mapper(componentModel = "spring", uses = {UserMapper.class, StoreGroupMapper.class, StoreMapper.class, })
 public interface BusinessUserMapper {
 
     @Mapping(source = "user.id", target = "userId")
@@ -26,22 +26,22 @@ public interface BusinessUserMapper {
     BusinessUser businessUserDTOToBusinessUser(BusinessUserDTO businessUserDTO);
 
     List<BusinessUser> businessUserDTOsToBusinessUsers(List<BusinessUserDTO> businessUserDTOs);
-
-    default StoreGroup storeGroupFromId(Long id) {
+    /**
+     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
+     * creating a new attribute to know if the entity has any relationship from some other entity
+     *
+     * @param id id of the entity
+     * @return the entity instance
+     */
+     
+    default BusinessUser businessUserFromId(Long id) {
         if (id == null) {
             return null;
         }
-        StoreGroup storeGroup = new StoreGroup();
-        storeGroup.setId(id);
-        return storeGroup;
+        BusinessUser businessUser = new BusinessUser();
+        businessUser.setId(id);
+        return businessUser;
     }
+    
 
-    default Store storeFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        Store store = new Store();
-        store.setId(id);
-        return store;
-    }
 }

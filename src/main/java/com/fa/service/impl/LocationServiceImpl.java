@@ -102,6 +102,7 @@ public class LocationServiceImpl implements LocationService{
      * Search for the location corresponding to the query.
      *
      *  @param query the query of the search
+     *  @param pageable the pagination information
      *  @return the list of entities
      */
     @Override
