@@ -19,7 +19,8 @@
             'angular-loading-bar',
             'ngAnimate',
             'ngMaterial',
-            'ngMdIcons'
+            'ngMdIcons',
+            'ngMaterialSidemenu'
         ])
         .config(config)
         .run(run);

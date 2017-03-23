@@ -49,6 +49,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/angular-animate/angular-animate.js',
             'src/main/webapp/bower_components/angular-material/angular-material.js',
             'src/main/webapp/bower_components/angular-material-icons/angular-material-icons.min.js',
+            'src/main/webapp/bower_components/angular-material-sidemenu/dest/angular-material-sidemenu.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'src/main/webapp/app/app.module.js',
