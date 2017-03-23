@@ -1,51 +1,32 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-            ng-click="vm.cancel()">&times;</button>
-    <h4 class="modal-title" data-translate="login.title">Sign in</h4>
-</div>
-<div class="modal-body">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <h1 data-translate="login.title">Sign in</h1>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="alert alert-danger" ng-show="vm.authenticationError" data-translate="login.messages.error.authentication">
-                <strong>Failed to sign in!</strong> Please check your credentials and try again.
+<md-dialog id="login-dialog">
+    <form name="loginForm" ng-submit="vm.login()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Log In</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-icon="close" aria-label="Close Button"></md-icon>
+                </md-button>
             </div>
-        </div>
-        <div class="col-md-6">
-            <form class="form" role="form" ng-submit="vm.login($event)">
-                <div class="form-group">
-                    <label for="username" data-translate="global.form.username">Login</label>
-                    <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="vm.username">
-                </div>
-                <div class="form-group">
-                    <label for="password" data-translate="login.form.password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
-                           ng-model="vm.password">
-                </div>
-                <div class="form-group">
-                    <label for="rememberMe">
-                        <input type="checkbox" id="rememberMe" ng-model="vm.rememberMe" checked>
-                        <span data-translate="login.form.rememberme">Remember me</span>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary" data-translate="login.form.button">Sign in</button>
-            </form>
-            <p></p>
-            <div class="alert alert-warning">
-                <a class="alert-link" href="" ng-click="vm.requestResetPassword()" data-translate="login.password.forgot">Did you forget your password?</a>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Username</label>
+                    <input name="username" ng-model="vm.username" md-autofocus required/>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input type="password" name="password" ng-model="vm.password" required/>
+                </md-input-container>
             </div>
-            <div class="alert alert-warning" data-translate="global.messages.info.register" translate-compile>
-                You don't have an account yet? <a class="alert-link" href="" ng-click="vm.register()">Register a new account</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <br/>
-            <jh-social ng-provider="google"></jh-social>
-            <jh-social ng-provider="facebook"></jh-social>
-            <jh-social ng-provider="twitter"></jh-social>
-            <!-- jhipster-needle-add-social-button -->
-        </div>
-    </div>
-</div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <a href="" class="md-primary">Forgot Password?</a>
+            <span flex></span>
+            <md-button type="submit" ng-disabled="loginForm.$invalid" class="md-raised md-primary">Login</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

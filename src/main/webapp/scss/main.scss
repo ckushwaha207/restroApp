@@ -1,7 +1,11 @@
 body {
     background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 /* ==========================================================================
@@ -381,3 +385,121 @@ Social button
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+/* ==========================================================================
+Home Page
+========================================================================== */
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+
+#{$a-tags} {
+  color: currentColor;
+  text-decoration: none;
+}
+#{$a-tags-hover} {
+  color: currentColor;
+}
+
+
+.wrapper {
+    height: inherit;
+    width: inherit;
+}
+
+
+.main-sidebar {
+    .main-header {
+        md-toolbar {
+            .md-toolbar-tools {
+                a {
+                    margin: auto;
+                    .logo-mini {
+                        display: none;
+                    }
+
+                    .logo-lg {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-sidebar.sidebar-collapse {
+    .main-header {
+        md-toolbar {
+            .md-toolbar-tools {
+                a {
+                    margin: auto;
+                    .logo-mini {
+                        display: block;
+                    }
+
+                    .logo-lg {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.main-footer {
+    background: #fff;
+    color: #444;
+    border-top: 1px solid #d2d6de;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+
+/* ==========================================================================
+Material Design
+========================================================================== */
+
+md-toolbar {
+    h1 {
+        font-size: 1.250em;
+        font-weight: 400;
+        margin: auto;
+    }
+
+    &.md-toolbar-tools {
+        h1 {
+            font-size: 1.250em;
+            font-weight: 400;
+        }
+    }
+}
+
+md-sidenav,
+md-sidenav.md-locked-open,
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 0px !important;
+    width: auto !important;
+    max-width: none !important;
+}
+
+.md-sidemenu-button span {
+    color: currentColor;
+}
+
+md-icon svg {
+  fill: inherit;
+}
+
+/* ==========================================================================
+Angular Material Sidemenu Hacks
+========================================================================== */
+
+.main-sidebar.sidebar-collapse {
+    .md-sidemenu {
+        .md-sidemenu-content .md-button, .md-button {
+            span {
+                display: none;
+            }
+        }
+    }
+}

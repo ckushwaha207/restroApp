@@ -5,20 +5,22 @@
         .module('foodAppetencyApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance'];
+    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$mdDialog'];
 
-    function LoginController ($rootScope, $state, $timeout, Auth, $uibModalInstance) {
+    function LoginController ($rootScope, $state, $timeout, Auth, $mdDialog) {
         var vm = this;
 
         vm.authenticationError = false;
-        vm.cancel = cancel;
         vm.credentials = {};
-        vm.login = login;
         vm.password = null;
-        vm.register = register;
         vm.rememberMe = true;
-        vm.requestResetPassword = requestResetPassword;
         vm.username = null;
+        vm.cancel = cancel;
+        vm.login = login;
+        vm.register = register;
+        vm.hide = hide;
+        vm.close = close;
+        vm.requestResetPassword = requestResetPassword;
 
         $timeout(function (){angular.element('#username').focus();});
 
@@ -29,18 +31,22 @@
                 rememberMe: true
             };
             vm.authenticationError = false;
-            $uibModalInstance.dismiss('cancel');
+            $mdDialog.cancel();
         }
 
-        function login (event) {
-            event.preventDefault();
+        function hide() {
+            $mdDialog.hide();
+        }
+
+        function login () {
             Auth.login({
                 username: vm.username,
                 password: vm.password,
                 rememberMe: vm.rememberMe
             }).then(function () {
                 vm.authenticationError = false;
-                $uibModalInstance.close();
+                vm.hide();
+
                 if ($state.current.name === 'register' || $state.current.name === 'activate' ||
                     $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
                     $state.go('home');
@@ -61,12 +67,12 @@
         }
 
         function register () {
-            $uibModalInstance.dismiss('cancel');
+           $mdDialog.cancel();
             $state.go('register');
         }
 
         function requestResetPassword () {
-            $uibModalInstance.dismiss('cancel');
+            $mdDialog.cancel();
             $state.go('requestReset');
         }
     }
