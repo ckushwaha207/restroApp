@@ -35,13 +35,13 @@
             .icon('menu', 'content/icons/menu.svg', 24)
             .icon('dashboard', 'content/icons/dashboard.svg', 18)
             .icon('close', 'content/icons/close.svg', 18)
-            .icon('keyboard_arrow_down', 'content/icons/keyboard_arrow_down.svg', 18);
+            .icon('keyboard_arrow_down', 'content/icons/keyboard_arrow_down.svg', 18)
+            .icon('chevron_right', 'content/icons/chevron_right.svg', 18);
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('red', function() {
-
-            })
-            .accentPalette('green');
+            .primaryPalette('red')
+            .accentPalette('green')
+            .backgroundPalette('grey');
     }
 
     function run(stateHandler, translationHandler) {
