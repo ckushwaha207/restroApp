@@ -3,12 +3,10 @@ package com.fa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -31,17 +29,6 @@ public class Order implements Serializable {
     private Long id;
 
     @Column(name = "order_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilo_sequence_generator")
-    @GenericGenerator(
-        name = "hilo_sequence_generator",
-        strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-        parameters = {
-            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "hilo_seqeunce"),
-            @org.hibernate.annotations.Parameter(name = "initial_value", value = "ORD000000"),
-            @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
-            @org.hibernate.annotations.Parameter(name = "optimizer", value = "hilo")
-        }
-    )
     private String orderNumber;
 
     @Enumerated(EnumType.STRING)

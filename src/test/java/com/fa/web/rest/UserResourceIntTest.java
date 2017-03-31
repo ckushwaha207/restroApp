@@ -204,21 +204,6 @@ public class UserResourceIntTest {
     }
 
     @Test
-    public void testGetExistingUser() throws Exception {
-        restUserMockMvc.perform(get("/api/users/admin")
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.lastName").value("Administrator"));
-    }
-
-    @Test
-    public void testGetUnknownUser() throws Exception {
-        restUserMockMvc.perform(get("/api/users/unknown")
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isNotFound());
-    }
-
     @Transactional
     public void createUserWithExistingLogin() throws Exception {
         // Initialize the database
@@ -450,11 +435,6 @@ public class UserResourceIntTest {
 
         int databaseSizeBeforeUpdate = userRepository.findAll().size();
 
-        restUserMockMvc.perform(get("/api/users/john.doe@localhost.com")
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.login").value("john.doe@localhost.com"));
         // Update the user
         User updatedUser = userRepository.findOne(user.getId());
 
@@ -502,9 +482,6 @@ public class UserResourceIntTest {
         userSearchRepository.save(anotherUser);
         int databaseSizeBeforeUpdate = userRepository.findAll().size();
 
-        restUserMockMvc.perform(delete("/api/users/john.doe@localhost.com")
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
         // Update the user
         User updatedUser = userRepository.findOne(user.getId());
 

@@ -29,10 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FoodAppetencyApp.class)
 public class ProfileInfoResourceIntTest {
 
-    @Autowired
-    private Environment environment;
-
-    @Autowired
     @Mock
     private Environment environment;
 
@@ -60,7 +56,6 @@ public class ProfileInfoResourceIntTest {
     }
 
     @Test
-    public void getProfileInfo()throws Exception {
     public void getProfileInfoWithRibbon() throws Exception {
         restProfileMockMvc.perform(get("/api/profile-info"))
             .andExpect(status().isOk())
