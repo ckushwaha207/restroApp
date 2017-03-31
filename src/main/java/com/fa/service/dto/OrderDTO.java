@@ -1,7 +1,6 @@
 package com.fa.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +14,6 @@ public class OrderDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String orderNumber;
 
     private OrderState state;
@@ -27,8 +25,6 @@ public class OrderDTO implements Serializable {
     private Long profileId;
 
     private String profileLogin;
-
-    private Set<CommerceItemDTO> items;
 
     public Long getId() {
         return id;
@@ -81,15 +77,6 @@ public class OrderDTO implements Serializable {
     public void setProfileLogin(String userLogin) {
         this.profileLogin = userLogin;
     }
-
-    public Set<CommerceItemDTO> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<CommerceItemDTO> items) {
-        this.items = items;
-    }
-
 
     @Override
     public boolean equals(Object o) {

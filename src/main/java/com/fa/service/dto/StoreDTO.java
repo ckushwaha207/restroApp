@@ -40,26 +40,6 @@ public class StoreDTO implements Serializable {
 
     private Long storeGroupId;
 
-    private Set<MenuDTO> menus;
-
-    private String address;
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Set<MenuDTO> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(Set<MenuDTO> menus) {
-        this.menus = menus;
-    }
-
     public Long getId() {
         return id;
     }

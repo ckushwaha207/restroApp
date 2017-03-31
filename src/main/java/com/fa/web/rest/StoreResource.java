@@ -94,8 +94,7 @@ public class StoreResource {
      */
     @GetMapping("/stores")
     @Timed
-    public ResponseEntity<List<StoreDTO>> getAllStores(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<StoreDTO>> getAllStores(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Stores");
         Page<StoreDTO> page = storeService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/stores");
@@ -154,8 +153,7 @@ public class StoreResource {
      */
     @GetMapping("/_search/stores")
     @Timed
-    public ResponseEntity<List<StoreDTO>> searchStores(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<StoreDTO>> searchStores(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Stores for query {}", query);
         Page<StoreDTO> page = storeService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/stores");

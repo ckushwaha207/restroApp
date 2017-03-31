@@ -19,16 +19,6 @@ public class MenuDTO implements Serializable {
 
     private Long storeId;
 
-    private Set<MenuCategoryDTO> categories;
-
-    public Set<MenuCategoryDTO> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<MenuCategoryDTO> categories) {
-        this.categories = categories;
-    }
-
     public Long getId() {
         return id;
     }

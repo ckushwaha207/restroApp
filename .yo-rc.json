@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.1.0",
+    "jhipsterVersion": "4.1.1",
     "baseName": "FoodAppetency",
     "packageName": "com.fa",
     "packageFolder": "com/fa",
