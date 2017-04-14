@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { MaterialModule } from '@angular/material';
+import { MdIconRegistry } from '@angular/material';
+import {FlexLayoutModule} from "@angular/flex-layout";
 import 'hammerjs';
 
 import { FoodAppetencySharedModule, UserRouteAccessService } from './shared';
@@ -34,6 +36,7 @@ import {
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         MaterialModule.forRoot(),
+        FlexLayoutModule,
         FoodAppetencySharedModule,
         FoodAppetencyHomeModule,
         FoodAppetencyAdminModule,
@@ -49,6 +52,7 @@ import {
         FooterComponent
     ],
     providers: [
+        MdIconRegistry,
         ProfileService,
         { provide: Window, useValue: window },
         { provide: Document, useValue: document },

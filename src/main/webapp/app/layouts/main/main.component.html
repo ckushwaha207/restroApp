@@ -1,11 +1,28 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened="true">
+        <md-toolbar color="primary"><span>FoodAppetency</span></md-toolbar>
+        <div style="background-color: green;">
+            Sidenav content are here
+        </div>
+    </md-sidenav>
+
+    <div class="content">
+        <header class="header-toolbar">
+            <md-toolbar color="primary" class="header-toolbar">
+                <button md-button (click)="sidenav.toggle()">
+                    <md-icon>menu</md-icon>
+                </button>
+            </md-toolbar>
+        </header>
+
+        <main class="content-body">
+            Content
+        </main>
+
+        <footer class="footer-toolbar">
+            <md-toolbar color="accent" class="header-toolbar">
+                Footer
+            </md-toolbar>
+        </footer>
     </div>
-    <jhi-footer></jhi-footer>
-</div>
+</md-sidenav-container>

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MdIconRegistry} from '@angular/material';
 import { Router, ActivatedRouteSnapshot, NavigationEnd, RoutesRecognized } from '@angular/router';
 
 import { JhiLanguageHelper, StateStorageService } from '../../shared';
 
 @Component({
     selector: 'jhi-main',
-    templateUrl: './main.component.html'
+    templateUrl: './main.component.html',
+    styleUrls: [
+        'main.component.scss'
+    ]
 })
 export class JhiMainComponent implements OnInit {
 
@@ -13,7 +18,13 @@ export class JhiMainComponent implements OnInit {
         private jhiLanguageHelper: JhiLanguageHelper,
         private router: Router,
         private $storageService: StateStorageService,
-    ) {}
+        private iconRegistry: MdIconRegistry,
+        private sanitizer: DomSanitizer
+    ) {
+        iconRegistry.addSvgIcon(
+                'menu',
+                sanitizer.bypassSecurityTrustResourceUrl('../../../content/icon/menu.svg'));
+    }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
         let title: string = (routeSnapshot.data && routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'foodAppetencyApp';
